@@ -14,10 +14,7 @@ var jugada = require('./jugada');
  */
 
  function Context(){
-   //Crear jugador humá
-  this.jugador1 = new jugador("Jorge", "NORMAL" ,"MANUAL");
-	//Crear JUGADOR banca
-	this.banca = new jugador("Banca", "BANCA", "AUTOMATIC");
+
   var self = this;
   this.ContextSelf = function(){return self;};
 
@@ -104,6 +101,10 @@ var jugada = require('./jugada');
 
   console.log("iniciamos partida");
 
+  //Crear jugador humá
+ this.jugador1 = new jugador("Jorge", "NORMAL" ,"MANUAL");
+ //Crear JUGADOR banca
+ this.banca = new jugador("Banca", "BANCA", "AUTOMATIC");
 	this.partida=new partida(this.jugador1,this.banca);
 	//Creem la baralla de cartes
 	this.baralla_ = new baralla();
