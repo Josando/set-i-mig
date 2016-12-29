@@ -82,6 +82,8 @@ function showPlayerProfile(){
 
 /** Check if there is a cookie and/or image profile defined to identify user. If not we force definition */
 
+/*
+
 function checkIfProfileHasBeenDefined(callBackFunction) {
 
     var user = getCookie("username");
@@ -114,6 +116,42 @@ function checkIfProfileHasBeenDefined(callBackFunction) {
     //$("#playerRight").text("Computer");
 }
 
+*/
+function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
+
+    var user = getCookie("username");
+
+    if (user !== "" && numberOfPlayers == 1) {
+        showPlayerProfile();
+        callBackFunction;
+    } else {
+        getModalTemplate("modal-player-profile",function($template){
+            $("#blah").hide();
+            $("#form2").hide();
+            $("#form3").hide();
+            //$(document,".close:first").click(function(){
+            $(".close:first").off("click").on("click",function(){
+              if (showPlayerProfile()){
+                $template.hide();
+                callBackFunction;
+              }
+            });
+            var $nickname = $("#nickname_");
+            $nickname.on('change blur focus',function(){
+              setCookie("username", $nickname.val(), 365);
+            });
+
+            $("#imgProfile").change(function(){
+              readFileAndPreviewFromLocalFileSystem(this);
+            });
+
+        });
+
+    }
+    //$("#playerRight").text("Computer");
+}
+
+
 
 //Encode an image using base64 previously to store it on LocalStorage
 //Note: In HTML the img tag can load an image pointing src attribute to an URL or putting there the image in base64
@@ -127,7 +165,7 @@ function getBase64Image(img) {
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
-//We convert before saving to base64
+//We convert before saving to base64 
 function saveImageToLocalStorage(){
   var imgData = getBase64Image($('#blah')[0]);
   localStorage.setItem("imgData", imgData);
@@ -149,12 +187,20 @@ function readFileAndPreviewFromLocalFileSystem(input) {
 function chooseGameMode(context_){
     if (!context_) context_ = main.singletonContext.getInstance(); //EXAM
     getModalTemplate("modal-game-mode",function($template){
-        $template.find("#single").on("click",function(){
 
-          checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc());
-
+        $( "#single" ).click(function() {            
+            checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(), 1);
             $template.fadeOut("slow");
         });
+        $( "#two" ).click(function() {            
+            checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(), 2);
+            $template.fadeOut("slow");
+        });
+        $( "#three" ).click(function() {            
+            checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(), 3);
+            $template.fadeOut("slow");
+        });        
+
     });
 }
 
