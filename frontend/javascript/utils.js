@@ -81,13 +81,14 @@ function showPlayerProfile(){
 }
 
 /** Check if there is a cookie and/or image profile defined to identify user. If not we force definition */
+
 function checkIfProfileHasBeenDefined(callBackFunction) {
 
     var user = getCookie("username");
 
     if (user !== "") {
         showPlayerProfile();
-        callBackFunction();
+        callBackFunction;
     } else {
         getModalTemplate("modal-player-profile",function($template){
             $("#blah").hide();
@@ -95,7 +96,7 @@ function checkIfProfileHasBeenDefined(callBackFunction) {
             $(".close:first").off("click").on("click",function(){
               if (showPlayerProfile()){
                 $template.hide();
-                callBackFunction();
+                callBackFunction;
               }
             });
             var $nickname = $("#nickname_");
@@ -112,6 +113,7 @@ function checkIfProfileHasBeenDefined(callBackFunction) {
     }
     //$("#playerRight").text("Computer");
 }
+
 
 //Encode an image using base64 previously to store it on LocalStorage
 //Note: In HTML the img tag can load an image pointing src attribute to an URL or putting there the image in base64
@@ -148,8 +150,9 @@ function chooseGameMode(context_){
     if (!context_) context_ = main.singletonContext.getInstance(); //EXAM
     getModalTemplate("modal-game-mode",function($template){
         $template.find("#single").on("click",function(){
-            if (context_ && context_.state === "stop") context_.start();
-            //else context_.resetScores();//EXAM
+
+          checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc());
+
             $template.fadeOut("slow");
         });
     });

@@ -15,8 +15,8 @@ window.onload=function(){
 
 	var GameContext_ = singletonContext.getInstance();
 
-	utils.checkIfProfileHasBeenDefined(utils.chooseGameMode);
-
+	//utils.checkIfProfileHasBeenDefined(utils.chooseGameMode);
+	utils.chooseGameMode();
 //Se inicia la Partida
 
 //GameContext_.iniciar_joc();
