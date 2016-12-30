@@ -64,7 +64,14 @@ function getCookie(cname) {
 
 function showPlayerProfile(){
   var user = getCookie("username");
-  if (user && user!==""){
+
+  var user1 = user.split('|')[0];
+  var user2 = user.split('|')[1];
+  var user3 = user.split('|')[2];
+  var flag = false;
+
+if(user2 == 'null'){
+  if (user1 && user1!==""){
     //var $nicknameElement=$("#playerLeft"); EXAM LEAVE
     //$nicknameElement.text(user);EXAM LEAVE
     var dataImage = localStorage.getItem('imgData');
@@ -74,71 +81,85 @@ function showPlayerProfile(){
       $profile.attr("src","data:image/jpg;base64," + dataImage).width(48).height(64);
       //$("body").prepend($profileImg); EXAM LEAVE
     }
-    return true;
-  }else{
-    return false;
+    flag = true;
   }
+}else if(user3 == 'null'){
+  if (user1 && user1!==""){
+    //var $nicknameElement=$("#playerLeft"); EXAM LEAVE
+    //$nicknameElement.text(user);EXAM LEAVE
+    var dataImage = localStorage.getItem('imgData');
+    if (dataImage){
+      var $profile=$('#profileImg');
+      $profile.css("position","absolute").hide();//EXAM
+      $profile.attr("src","data:image/jpg;base64," + dataImage).width(48).height(64);
+      //$("body").prepend($profileImg); EXAM LEAVE
+    }
+    var dataImage2 = localStorage.getItem('imgData2');
+    if (dataImage2){
+      var $profile2=$('#profileImg2');
+      $profile2.css("position","absolute").hide();//EXAM
+      $profile2.attr("src","data:image/jpg;base64," + dataImage2).width(48).height(64);
+      //$("body").prepend($profileImg); EXAM LEAVE
+    }
+    flag = true;
+  }
+}else{
+  if (user1 && user1!==""){
+    //var $nicknameElement=$("#playerLeft"); EXAM LEAVE
+    //$nicknameElement.text(user);EXAM LEAVE
+    var dataImage = localStorage.getItem('imgData');
+    if (dataImage){
+      var $profile=$('#profileImg');
+      $profile.css("position","absolute").hide();//EXAM
+      $profile.attr("src","data:image/jpg;base64," + dataImage).width(48).height(64);
+      //$("body").prepend($profileImg); EXAM LEAVE
+    }
+
+    var dataImage2 = localStorage.getItem('imgData2');
+    if (dataImage2){
+      var $profile2=$('#profileImg2');
+      $profile2.css("position","absolute").hide();//EXAM
+      $profile2.attr("src","data:image/jpg;base64," + dataImage2).width(48).height(64);
+      //$("body").prepend($profileImg); EXAM LEAVE
+    }
+
+    var dataImage3 = localStorage.getItem('imgData2');
+    if (dataImage3){
+      var $profile3=$('#profileImg3');
+      $profile3.css("position","absolute").hide();//EXAM
+      $profile3.attr("src","data:image/jpg;base64," + dataImage3).width(48).height(64);
+      //$("body").prepend($profileImg); EXAM LEAVE
+    }
+    
+    flag = true;
+  }
+
+}
+    return flag;
 }
 
 /** Check if there is a cookie and/or image profile defined to identify user. If not we force definition */
-
-/*
-
-function checkIfProfileHasBeenDefined(callBackFunction) {
-
-    var user = getCookie("username");
-
-    if (user !== "") {
-        showPlayerProfile();
-        callBackFunction;
-    } else {
-        getModalTemplate("modal-player-profile",function($template){
-            $("#blah").hide();
-            //$(document,".close:first").click(function(){
-            $(".close:first").off("click").on("click",function(){
-              if (showPlayerProfile()){
-                $template.hide();
-                callBackFunction;
-              }
-            });
-            var $nickname = $("#nickname_");
-            $nickname.on('change blur focus',function(){
-              setCookie("username", $nickname.val(), 365);
-            });
-
-            $("#imgProfile").change(function(){
-              readFileAndPreviewFromLocalFileSystem(this);
-            });
-
-        });
-
-    }
-    //$("#playerRight").text("Computer");
-}
-
-*/
 function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
 
     var user = getCookie("username");
 
-    if (user !== "" && numberOfPlayers == 1) {
+    /*if (user !== "" && numberOfPlayers == 1) {
         showPlayerProfile();
         callBackFunction;
-    } else {
+    } else */if(numberOfPlayers == 1){
         getModalTemplate("modal-player-profile",function($template){
             $("#blah").hide();
             $("#form2").hide();
             $("#form3").hide();
-            //$(document,".close:first").click(function(){
-            $(".close:first").off("click").on("click",function(){
+
+            var $nickname = $("#nickname_");
+            $( "#submitPlayerInformation" ).click(function() {
+              if($nickname.val()){ setCookie("username", $nickname.val()+"|null|null", 365) }
+              
               if (showPlayerProfile()){
                 $template.hide();
                 callBackFunction;
               }
-            });
-            var $nickname = $("#nickname_");
-            $nickname.on('change blur focus',function(){
-              setCookie("username", $nickname.val(), 365);
             });
 
             $("#imgProfile").change(function(){
@@ -148,10 +169,68 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
         });
 
     }
-    //$("#playerRight").text("Computer");
+
+    if(numberOfPlayers == 2){
+        getModalTemplate("modal-player-profile",function($template){
+            $("#blah").hide();
+            $("#blah2").hide();
+            $("#form3").hide();
+
+            var $nickname = $("#nickname_");
+            var $nickname2 = $("#nickname_2");
+            $( "#submitPlayerInformation" ).click(function() {
+              console.log($nickname.val() + " " + $nickname2.val());
+              if($nickname.val() && $nickname2.val()){ 
+                setCookie("username", $nickname.val()+"|"+$nickname2.val()+"|null", 365) 
+              }
+              
+              if (showPlayerProfile()){
+                $template.hide();
+                callBackFunction;
+              }
+            });
+
+            $("#imgProfile").change(function(){
+              readFileAndPreviewFromLocalFileSystem(this);
+            });
+
+        });
+
+    }
+
+
+    if(numberOfPlayers == 3){
+        getModalTemplate("modal-player-profile",function($template){
+            $("#blah").hide();
+            $("#blah2").hide();
+            $("#blah3").hide();
+
+            var $nickname = $("#nickname_");
+            var $nickname2 = $("#nickname_2");
+            var $nickname3 = $("#nickname_3");
+            $( "#submitPlayerInformation" ).click(function() {
+
+              console.log($nickname.val() + " " + $nickname2.val() + " " + $nickname3.val());
+              
+              if($nickname.val() && $nickname2.val() && $nickname3.val()){ 
+                setCookie("username", $nickname.val()+"|"+$nickname2.val()+"|" + $nickname3.val(), 365) 
+              }
+              
+              if (showPlayerProfile()){
+                $template.hide();
+                callBackFunction;
+              }
+            });
+
+            $("#imgProfile").change(function(){
+              readFileAndPreviewFromLocalFileSystem(this);
+            });
+
+        });
+
+    }
+
 }
-
-
 
 //Encode an image using base64 previously to store it on LocalStorage
 //Note: In HTML the img tag can load an image pointing src attribute to an URL or putting there the image in base64
