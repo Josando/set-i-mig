@@ -43,9 +43,9 @@ function setimigEngine(partida_){
 
 		if (carta.getIsOculta()){
 				tipus_jugador=="NORMAL"?carta_class="carta_meua_oculta":carta_class="carta_banca_oculta";
-				var img_carta="images/baralla/revers_small.jpg";
+				var img_carta="images/baralla/revers_small.png";
 		}else{
-				 img_carta='images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.jpg';
+				 img_carta='images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.png';
 		}
 
 		var $d = $("<div>");

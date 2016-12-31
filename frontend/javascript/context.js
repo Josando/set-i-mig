@@ -72,7 +72,7 @@ var jugada = require('./jugada');
        //console.log(raw_id_carta);
        var ids_carta=raw_id_carta.split('_');
        var carta=self.jugador1.getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-       $(this).children(":first").attr('src','images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.jpg');
+       $(this).children(":first").attr('src','images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.png');
      }
    );
 
@@ -84,7 +84,7 @@ var jugada = require('./jugada');
        var carta=self.jugador1.getJugada(ids_carta[1]).getCarta(ids_carta[2]);
        //alert("bobo");
        if (carta.getIsOculta())
-         $(this).children(":first").attr('src','images/baralla/revers_small.jpg');
+         $(this).children(":first").attr('src','images/baralla/revers_small.png');
      }
  );
 
@@ -93,7 +93,7 @@ var jugada = require('./jugada');
      var ids_carta=raw_id_carta.split('_');
      var carta=self.jugador1.getJugada(ids_carta[1]).getCarta(ids_carta[2]);
        $(self).attr("class","carta_meua");
-       $(self).children(":first").attr('src','images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.jpg');
+       $(self).children(":first").attr('src','images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.png');
      carta.setOculta(false);
  });
 
