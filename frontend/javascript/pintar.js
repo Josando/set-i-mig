@@ -27,12 +27,16 @@ function setimigEngine(partida_){
 	 * @param {string} tipus_jugador En funció de si el jugador és NORMAL o BANCA dibuixarem les cartes en una orientació diferent.
 	 */
 	 this.pintarCarta=function(carta, num_jugada, index,tipus_jugador){
+console.log(tipus_jugador, index);
 
-		var capa_id="#meua_jugada"+num_jugada;
-		var carta_class="carta_meua";
-		var carta_id="NORMAL_"+num_jugada+"_"+index;
-		var left_inc=index*20;
-		var top_inc=index*40;
+		if (tipus_jugador=="PLAYER1"){
+			var capa_id="#meua_jugada"+num_jugada;
+			var carta_class="carta_meua";
+			var carta_id="PLAYER1_"+num_jugada+"_"+index;
+			var left_inc=index*20;
+			var top_inc=index*40;
+		}
+
 		if (tipus_jugador=="BANCA"){
 			capa_id="#banca_jugada";
 			left_inc=index*70;
@@ -41,8 +45,26 @@ function setimigEngine(partida_){
 			carta_id="BANCA_"+num_jugada+"_"+index;
 		}
 
+		if (tipus_jugador=="PLAYER2"){
+			var capa_id="#Player2_jugada"+num_jugada;
+			var carta_class="carta_meua";
+			var carta_id="PLAYER2_"+num_jugada+"_"+index;
+			var left_inc=index*50;
+			var top_inc=index*40;
+		}
+
 		if (carta.getIsOculta()){
-				tipus_jugador=="NORMAL"?carta_class="carta_meua_oculta":carta_class="carta_banca_oculta";
+				if(tipus_jugador=="PLAYER1"){
+					carta_class="carta_meua_oculta";
+				}else if (tipus_jugador=="PLAYER2") {
+					carta_class="carta_meua_oculta1";
+				}else{
+					carta_class="carta_banca_oculta";
+				}
+
+				//tipus_jugador=="PLAYER1"?carta_class="carta_meua_oculta":carta_class="carta_banca_oculta";
+			//	if(tipus_jugador=="PLAYER_2");carta_class="carta_meua_oculta1";
+			//	tipus_jugador=="PLAYER_2"?carta_class="carta_meua_oculta";
 				var img_carta="images/baralla/revers_small.jpg";
 		}else{
 				 img_carta='images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.jpg';
@@ -72,9 +94,9 @@ function setimigEngine(partida_){
 	 * @param {Jugador} jugador_ Jugador del qual volem pintar puntuació
 	 */
 	this.pintarPuntuacio=function(jugador_){
-		//console.log("PintarPuntuacio "+jugador_);
+		console.log(jugador_);
 		var $d = $("<span>");
-		if (jugador_.getTipus()=="NORMAL"){
+		if (jugador_.getTipus()=="PLAYER1"){
 			var isbuit=$("#punts_jugador1").length==0;
 
 			if (isbuit){
@@ -87,6 +109,17 @@ function setimigEngine(partida_){
 				$d.append(jugador_.getNom()+" Jugada "+(i+1)+" = "+jugador_.getJugada(i).getPuntuacioJugada()+"<br>");
 			}
 
+		}else if (jugador_.getTipus()=="PLAYER2") {
+			var isbuit=$("#punts_jugador2").length==0;
+			if (isbuit){
+				 $d.attr('id',"punts_jugador2")
+			}else{
+				 $d=$("#punts_jugador2");
+			}
+			$d.empty();
+			for (var i=0; i<jugador_.getNumJugades();i++){
+				$d.append(jugador_.getNom()+" Jugada "+(i+1)+" = "+jugador_.getJugada(i).getPuntuacioJugada()+"<br>");
+			}
 		}else{
 			var isbuit=$("#punts_banca").length==0;
 			$("#punts_banca").empty();
@@ -96,18 +129,29 @@ function setimigEngine(partida_){
 			}else{
 			    $d=$("#punts_banca");
 			}
-			if (!partida.getJugador().estaJugant())
-				$d.html("Banca "+jugador_.getNom()+" = "+jugador_.getJugadaActual().getPuntuacioJugada());
-			console.log("mgder->"+$d.html());
+			try {
+				if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant())
+					$d.html("Banca "+jugador_.getNom()+" = "+jugador_.getJugadaActual().getPuntuacioJugada());
+				console.log("mgder->"+$d.html());
+			} catch (e) {
+				if (!partida.getJugador(1).estaJugant())
+					$d.html("Banca "+jugador_.getNom()+" = "+jugador_.getJugadaActual().getPuntuacioJugada());
+				console.log("mgder->"+$d.html());
+			}
 		}
 		return $d;
 	}
 
 	this.pintarJugada=function(jugador_nom,tipus_jugador,ultima_jugada){
-		if (tipus_jugador === "NORMAL"){
+		if (tipus_jugador === "PLAYER1"){
 			var $d2 = $("<div>");
 			$d2.addClass("jugador_"+jugador_nom)
 			.attr('id', 'meua_jugada'+ultima_jugada)
+			.appendTo("#tapet");
+		}else if (tipus_jugador === "PLAYER2") {
+			var $d2 = $("<div>");
+			$d2.addClass("jugador_"+jugador_nom)
+			.attr('id', 'Player2_jugada'+ultima_jugada)
 			.appendTo("#tapet");
 		}else{
 			var $d2 = $("<div>");
@@ -117,8 +161,8 @@ function setimigEngine(partida_){
 		}
 	}
 
-	this.obrimJugada=function(carta_aux2){
-
+	this.obrimJugada=function(carta_aux2, numerodeljugadoractual){
+console.log(numerodeljugadoractual);
 		 var $elmeudialeg=$( "#dialog-modal" ).dialog({
 			autoOpen:false,
 			resizable: false,
@@ -127,12 +171,13 @@ function setimigEngine(partida_){
 			buttons: {
 				"Obrir nova jugada": function() {
 					//alert("Obrir carta="+carta_aux2.getPal());
-					partida.getJugador().afegirJugada(carta_aux2);
+					console.log(partida.getJugador(numerodeljugadoractual));
+					partida.getJugador(numerodeljugadoractual).afegirJugada(carta_aux2);
 					$( this ).dialog( "close" );
 					return true;
 				},
 				"Continuar amb la mateixa": function() {
-					partida.getJugador().afegir_carta_a_jugada_actual(carta_aux2);
+					partida.getJugador(numerodeljugadoractual).afegir_carta_a_jugada_actual(carta_aux2);
 					$( this ).dialog( "close" );
 					return false;
 				}
@@ -144,9 +189,17 @@ function setimigEngine(partida_){
 	this.invalidarJugada=function(index_jugada,tipus_jugador){
 			var top="490px";
 			var left="540px";
-			if (tipus_jugador=="NORMAL"){
+			if (tipus_jugador=="PLAYER1"){
 				top="170px";
 				left=50+index_jugada*170;
+				console.log("player1"+left+index_jugada);
+			}else if (tipus_jugador=="PLAYER2") {
+				top="170px";
+				left=left=600+index_jugada;
+				console.log("player2"+left+index_jugada);
+			}else {
+				top="490px";
+				left="540px";
 			}
 			var $d = $("<div>")
 				.css('position','absolute')
@@ -165,9 +218,17 @@ function setimigEngine(partida_){
 	this.pintarWin=function(index_jugada,tipus_jugador){
 			var top="490px";
 			var left="540px";
-			if (tipus_jugador=="NORMAL"){
+			if (tipus_jugador=="PLAYER1"){
 				top="170px";
 				left=50+index_jugada*170;
+					console.log("player1"+left+index_jugada);
+			}else if (tipus_jugador=="PLAYER2") {
+				top="170px";
+				left=600+index_jugada;
+				console.log("player2"+left+index_jugada);
+			}else {
+				top="490px";
+				left="540px";
 			}
 			var $d = $("<div>")
 				.css('position','absolute')

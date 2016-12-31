@@ -13,14 +13,14 @@
 function Jugada(carta_,jugador_){
 	var jugador=jugador_;
 	var cartes=new Array();
-
+	console.log(jugador_);
 	//La primera carta de les jugades obertes la destapem
-	if (jugador_.getNumJugades()>=1 && jugador_.getTipus()=="NORMAL") {
+	if (jugador_.getNumJugades()>=1 && jugador_.getTipus()=="PLAYER1") {
 		carta_.setOculta(false);
 		jugador_.getJugada(0).getCarta(0).setOculta(false);
 
 		if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().pintarCarta(jugador_.getJugada(0).getCarta(0),0,0,"NORMAL");
-	
+
 
 	//La primera carta de la 1ra jugada la repartim oculta
 	}else{
@@ -50,7 +50,7 @@ function Jugada(carta_,jugador_){
 
 			//Pintem abans de descobrir si la jugada és vàlida o no
 			var ja=jugador.getIndexJugadaActual();
-			if (!this.hiHaAlgunaCartaOculta() && jugador_.getTipus()=="NORMAL") carta_.setOculta(true);
+			if (!this.hiHaAlgunaCartaOculta() && jugador_.getTipus()=="PLAYER1") carta_.setOculta(true);
 
 			if (jugador.getPartida() != null)	jugador.getPartida().getSetimigEngine().pintarCarta(carta_,ja,cartes.length-1,jugador.getTipus());
 

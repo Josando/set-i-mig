@@ -14,7 +14,7 @@ window.onload=function(){
 var GameContext_ = singletonContext.getInstance();
 
 //Se inicia la Partida
-GameContext_.iniciar_joc();
+GameContext_.iniciar_joc("jugador");
 
 //Se empieza una ronda
 

@@ -10,14 +10,16 @@ var setimigEngine = require('./pintar');
 * @param {Jugador} jugador1 El 1er jugador "normal" (no banca) de la partida
 * @param {Jugador} banca El jugador banca de la partida
 */
-function Partida(jugador1,banca){
+function Partida(jugador, banca){
 
-	var jugador_normal=jugador1;
+	var jugador_normal=jugador;
 	var jugador_banca=banca;
 
-	jugador_normal.setPartida(this); //Enregistrem partida del jugador
-	jugador_banca.setPartida(this); //Enregistrem partida de la banca
+	for (var i = 1; i < jugador_normal.length; i++) {
+	jugador_normal[i].setPartida(this); //Enregistrem partida del jugador
+	}
 
+	jugador_banca.setPartida(this);
 	//Creem el motor gràfic
 	var motor_grafic= new setimigEngine(this);
 
@@ -25,12 +27,13 @@ function Partida(jugador1,banca){
 		return motor_grafic;
 	}
 
-	this.getJugador=function(){
-		return jugador_normal;
+	this.getJugador=function(numerodeljugadoractual){
+		return jugador_normal[numerodeljugadoractual];
 	}
 
+
 	this.getBanca=function(){
-		return_banca;
+		return jugador_banca;
 	}
 
 }

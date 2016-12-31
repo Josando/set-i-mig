@@ -12,7 +12,7 @@ var jugada = require('./jugada');
 function Jugador(nom_, tipus_, mode_joc_ ){
 
   this.nom = nom_;
-	this.tipus = tipus_; //NORMAL o BANCA
+	this.tipus = tipus_; //PLAYER_1, PLAYER_2 o BANCA
 	this.mode_joc = mode_joc_ //MANUAL o AUTOMATIC
 	this.jugades = new Array(); //Màxim 4 jugades obertes
 	this.jugada_actual = 0; //Manté una referència a la jugada actual
