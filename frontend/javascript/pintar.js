@@ -130,8 +130,7 @@ console.log(tipus_jugador, index);
 			    $d=$("#punts_banca");
 			}
 			try {
-				if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant())
-					$d.html("Banca "+jugador_.getNom()+" = "+jugador_.getJugadaActual().getPuntuacioJugada());
+				if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant()) $d.html("Banca "+jugador_.getNom()+" = "+jugador_.getJugadaActual().getPuntuacioJugada());
 				console.log("mgder->"+$d.html());
 			} catch (e) {
 				if (!partida.getJugador(1).estaJugant())
