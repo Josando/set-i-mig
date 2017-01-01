@@ -9,13 +9,20 @@
 /** Prototype where all game objects are present and could be accessed */
 var singletonContext = require('./patterns/singleton/singletonContext');
 
+var utils = require('./utils');
+
 window.onload=function(){
 
-var GameContext_ = singletonContext.getInstance();
+	var GameContext_ = singletonContext.getInstance();
 
+	//utils.checkIfProfileHasBeenDefined(utils.chooseGameMode);
+	utils.chooseGameMode();
 //Se inicia la Partida
+
 GameContext_.iniciar_joc("jugador");
 
+//GameContext_.iniciar_joc();
 //Se empieza una ronda
 
-}
+};
+module.exports.singletonContext = singletonContext;
