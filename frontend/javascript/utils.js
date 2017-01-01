@@ -154,6 +154,7 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
 
             var $nickname = $("#nickname_");
             $( "#submitPlayerInformation" ).click(function() {
+              console.log($nickname.val());
               if($nickname.val()){ setCookie("username", $nickname.val()+"|null|null", 365) }
               
               if (showPlayerProfile()){
@@ -163,7 +164,7 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
             });
 
             $("#imgProfile").change(function(){
-              readFileAndPreviewFromLocalFileSystem(this);
+              readFileAndPreviewFromLocalFileSystem(this, 1);
             });
 
         });
@@ -191,7 +192,11 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
             });
 
             $("#imgProfile").change(function(){
-              readFileAndPreviewFromLocalFileSystem(this);
+              readFileAndPreviewFromLocalFileSystem(this, 1);
+            });
+
+            $("#imgProfile2").change(function(){
+              readFileAndPreviewFromLocalFileSystem(this, 2);
             });
 
         });
@@ -222,9 +227,21 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
               }
             });
 
+
             $("#imgProfile").change(function(){
-              readFileAndPreviewFromLocalFileSystem(this);
+              readFileAndPreviewFromLocalFileSystem(this, 1);
             });
+
+
+            $("#imgProfile2").change(function(){
+              readFileAndPreviewFromLocalFileSystem(this, 2);
+            });
+
+
+            $("#imgProfile3").change(function(){
+              readFileAndPreviewFromLocalFileSystem(this, 3);
+            });
+
 
         });
 
@@ -245,19 +262,48 @@ function getBase64Image(img) {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 //We convert before saving to base64 
-function saveImageToLocalStorage(){
-  var imgData = getBase64Image($('#blah')[0]);
-  localStorage.setItem("imgData", imgData);
+function saveImageToLocalStorage(player){
+  if(player == 1){
+    var imgData = getBase64Image($('#blah')[0]);
+    localStorage.setItem("imgData", imgData);
+  }
+
+  if(player == 2){
+    var imgData = getBase64Image($('#blah2')[0]);
+    localStorage.setItem("imgData2", imgData);
+  }
+
+  if(player == 3){
+    var imgData = getBase64Image($('#blah3')[0]);
+    localStorage.setItem("imgData3", imgData);
+  }
 }
 
 //We choose a image profile from local system and we do a preview
-function readFileAndPreviewFromLocalFileSystem(input) {
+function readFileAndPreviewFromLocalFileSystem(input, player) {  
+
   if (input.files && input.files[0]) {
-      $('#blah').show();
+      
+      if(player == 1){ $('#blah').show(); }
+      if(player == 2){ $('#blah2').show(); }
+      if(player == 3){ $('#blah3').show(); }
+      
       var reader = new FileReader();
       reader.onload = function (e) {
-        $('#blah').attr('src',e.target.result);
-        saveImageToLocalStorage();
+      
+        if(player == 1){ 
+          $('#blah').attr('src',e.target.result); 
+          saveImageToLocalStorage(player);
+        };
+        if(player == 2){ 
+          $('#blah2').attr('src',e.target.result); 
+          saveImageToLocalStorage(player);
+        };
+        if(player == 3){ 
+          $('#blah3').attr('src',e.target.result); 
+          saveImageToLocalStorage(player);
+        };
+              
       };
       reader.readAsDataURL(input.files[0]);
   }
