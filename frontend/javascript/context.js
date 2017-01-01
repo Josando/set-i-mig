@@ -154,6 +154,7 @@ function Context() {
         }
     });
 
+
     $(document).on('mouseover', '.carta_meua_oculta',
         function(e) {
             //console.log("mouse");
@@ -161,7 +162,7 @@ function Context() {
             console.log(raw_id_carta);
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[1].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.jpg');
+            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
         }
     );
 
@@ -172,7 +173,7 @@ function Context() {
             console.log(raw_id_carta);
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.jpg');
+            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
         }
     );
 
@@ -184,7 +185,7 @@ function Context() {
             var carta = self.jugador[1].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
             //alert("bobo");
             if (carta.getIsOculta())
-                $(this).children(":first").attr('src', 'images/baralla/revers_small.jpg');
+                $(this).children(":first").attr('src', 'images/baralla/revers_small.png');
         }
     );
 
@@ -196,7 +197,7 @@ function Context() {
             var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
             //alert("bobo");
             if (carta.getIsOculta())
-                $(this).children(":first").attr('src', 'images/baralla/revers_small.jpg');
+                $(this).children(":first").attr('src', 'images/baralla/revers_small.png');
         }
     );
 
@@ -214,7 +215,7 @@ function Context() {
         var ids_carta = raw_id_carta.split('_');
         var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
         $(self).attr("class", "carta_meua");
-        $(self).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.jpg');
+        $(self).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
         carta.setOculta(false);
     });
 }

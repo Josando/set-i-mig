@@ -54,6 +54,7 @@ console.log(tipus_jugador, index);
 		}
 
 		if (carta.getIsOculta()){
+
 				if(tipus_jugador=="PLAYER1"){
 					carta_class="carta_meua_oculta";
 				}else if (tipus_jugador=="PLAYER2") {
@@ -65,9 +66,10 @@ console.log(tipus_jugador, index);
 				//tipus_jugador=="PLAYER1"?carta_class="carta_meua_oculta":carta_class="carta_banca_oculta";
 			//	if(tipus_jugador=="PLAYER_2");carta_class="carta_meua_oculta1";
 			//	tipus_jugador=="PLAYER_2"?carta_class="carta_meua_oculta";
-				var img_carta="images/baralla/revers_small.jpg";
+				var img_carta="images/baralla/revers_small.png";
+
 		}else{
-				 img_carta='images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.jpg';
+				 img_carta='images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.png';
 		}
 
 		var $d = $("<div>");
@@ -223,7 +225,7 @@ console.log(numerodeljugadoractual);
 					console.log("player1"+left+index_jugada);
 			}else if (tipus_jugador=="PLAYER2") {
 				top="170px";
-				left=600+index_jugada;
+				left=600+index_jugada*170;
 				console.log("player2"+left+index_jugada);
 			}else {
 				top="490px";
