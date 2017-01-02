@@ -5,6 +5,7 @@ var jugador = require('./jugador');
 var partida = require('./partida');
 var baralla = require('./baralla');
 var jugada = require('./jugada');
+var utils = require('./utils');
 /**
  * Context prototype.
  * With this object (Singleton) by the way. We manage game context: points, on/off, balls location
@@ -15,8 +16,10 @@ var jugada = require('./jugada');
 
 function Context() {
 
+    this.usersname = utils.getCookie("username");
+    console.log(this.usersname);
     this.jugador = new Array();
-    this.numerodejugadores = 2;
+    this.numerodejugadores = 1;
     var self = this;
     this.ContextSelf = function() {
         return self;
@@ -220,13 +223,14 @@ function Context() {
     });
 }
 
-Context.prototype.iniciar_joc = function(nom) {
+Context.prototype.iniciar_joc = function(numerodejugadores) {
 
-
+this.numerodejugadores = numerodejugadores;
+this.usersname = utils.getCookie("username");
 
     //Crear jugador humá
     for (var i = 1; i <= this.numerodejugadores; i++) {
-        this.jugador[i] = new jugador(nom, "PLAYER" + i, "MANUAL");
+        this.jugador[i] = new jugador(this.usersname.split('|')[i-1], "PLAYER" + i, "MANUAL");
     }
     //this.jugador1 = new jugador("Jorge", "PLAYER1" ,"MANUAL");
     //this.jugador2 = new jugador("Pepe", "PLAYER2" ,"MANUAL");

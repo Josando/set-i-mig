@@ -23,6 +23,8 @@ function setCookie(cname, cvalue, exdays) {
 
 function getModalTemplate(idTemplate,callback){
   //If exists in the DOM tree we don't call via ajax again
+  alert(idTemplate);
+
   if ($('#'+idTemplate).length){
       $('#'+idTemplate).show();
       callback($('#'+idTemplate));
@@ -130,7 +132,7 @@ if(user2 == 'null'){
       $profile3.attr("src","data:image/jpg;base64," + dataImage3).width(48).height(64);
       //$("body").prepend($profileImg); EXAM LEAVE
     }
-    
+
     flag = true;
   }
 
@@ -139,7 +141,7 @@ if(user2 == 'null'){
 }
 
 /** Check if there is a cookie and/or image profile defined to identify user. If not we force definition */
-function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
+function checkIfProfileHasBeenDefined(numberOfPlayers) {
 
     var user = getCookie("username");
 
@@ -155,10 +157,10 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
             var $nickname = $("#nickname_");
             $( "#submitPlayerInformation" ).click(function() {
               if($nickname.val()){ setCookie("username", $nickname.val()+"|null|null", 365) }
-              
+
               if (showPlayerProfile()){
                 $template.hide();
-                callBackFunction;
+                main.singletonContext.getInstance().iniciar_joc(1);
               }
             });
 
@@ -180,13 +182,14 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
             var $nickname2 = $("#nickname_2");
             $( "#submitPlayerInformation" ).click(function() {
               console.log($nickname.val() + " " + $nickname2.val());
-              if($nickname.val() && $nickname2.val()){ 
-                setCookie("username", $nickname.val()+"|"+$nickname2.val()+"|null", 365) 
+              if($nickname.val() && $nickname2.val()){
+                setCookie("username", $nickname.val()+"|"+$nickname2.val()+"|null", 365)
+
               }
-              
+
               if (showPlayerProfile()){
                 $template.hide();
-                callBackFunction;
+                main.singletonContext.getInstance().iniciar_joc(2);
               }
             });
 
@@ -211,14 +214,14 @@ function checkIfProfileHasBeenDefined(callBackFunction, numberOfPlayers) {
             $( "#submitPlayerInformation" ).click(function() {
 
               console.log($nickname.val() + " " + $nickname2.val() + " " + $nickname3.val());
-              
-              if($nickname.val() && $nickname2.val() && $nickname3.val()){ 
-                setCookie("username", $nickname.val()+"|"+$nickname2.val()+"|" + $nickname3.val(), 365) 
+
+              if($nickname.val() && $nickname2.val() && $nickname3.val()){
+                setCookie("username", $nickname.val()+"|"+$nickname2.val()+"|" + $nickname3.val(), 365)
               }
-              
+
               if (showPlayerProfile()){
                 $template.hide();
-                callBackFunction;
+                main.singletonContext.getInstance().iniciar_joc(3);
               }
             });
 
@@ -244,7 +247,7 @@ function getBase64Image(img) {
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
-//We convert before saving to base64 
+//We convert before saving to base64
 function saveImageToLocalStorage(){
   var imgData = getBase64Image($('#blah')[0]);
   localStorage.setItem("imgData", imgData);
@@ -267,18 +270,21 @@ function chooseGameMode(context_){
     if (!context_) context_ = main.singletonContext.getInstance(); //EXAM
     getModalTemplate("modal-game-mode",function($template){
 
-        $( "#single" ).click(function() {            
-            checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(), 1);
+        $( "#single" ).click(function() {
+            //checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(1), 1);
+            checkIfProfileHasBeenDefined(1);
             $template.fadeOut("slow");
         });
-        $( "#two" ).click(function() {            
-            checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(), 2);
+        $( "#two" ).click(function() {
+            //checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(2), 2);
+            checkIfProfileHasBeenDefined(2);
             $template.fadeOut("slow");
         });
-        $( "#three" ).click(function() {            
-            checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(), 3);
+        $( "#three" ).click(function() {
+            //checkIfProfileHasBeenDefined(main.singletonContext.getInstance().iniciar_joc(3), 3);
+            checkIfProfileHasBeenDefined(3);
             $template.fadeOut("slow");
-        });        
+        });
 
     });
 }

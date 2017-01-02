@@ -19,7 +19,7 @@ window.onload=function(){
 	utils.chooseGameMode();
 //Se inicia la Partida
 
-GameContext_.iniciar_joc("jugador");
+//GameContext_.iniciar_joc("jugador");
 
 //GameContext_.iniciar_joc();
 //Se empieza una ronda
