@@ -84,7 +84,7 @@ function setimigEngine(partida_){
 			}
 			$d.empty();
 			for (var i=0; i<jugador_.getNumJugades();i++){
-				$d.append(jugador_.getNom()+" Jugada "+(i+1)+" = "+jugador_.getJugada(i).getPuntuacioJugada()+"<br>");
+				$d.append(jugador_.getNom()+" Jugada "+(i+1)+" = "+jugador_.getJugada(i).valor+"<br>");
 			}
 
 		}else{

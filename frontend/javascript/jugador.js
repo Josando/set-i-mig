@@ -63,7 +63,7 @@ function Jugador(nom_, tipus_, mode_joc_ ){
 * @throws {IndexOutOfBoundaries} Si intentem accedir a una jugada que no existeix
 * @returns {Jugada} Retorna una instancia jugada
 */
-this.getJugada= function(index){
+Jugador.prototype.getJugada= function(index){
   if (typeof this.jugades[index] == 'undefined')
           throw new Error("out of bounds baby");
   else
