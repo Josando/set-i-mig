@@ -26,6 +26,11 @@ h1{
 	left:10;
 }
 
+.carta_meua_oculta2{
+	position:absolute;
+	left:10;
+}
+
 .carta_banca_oculta{
 	position:absolute;
 	left:10;
@@ -190,6 +195,77 @@ h1{
 	border: 4px dashed #72ac6f;
 	height: 208px;
 	width: 150px;
+}
+
+#Player3_jugada0{
+	position:absolute;
+	top:150;
+	left:1140;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#Player3_jugada1{
+	position:absolute;
+	top:150;
+	left:1310;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#Player3_jugada2{
+	position:absolute;
+	top:150;
+	left:1480;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+#Player3_jugada3{
+	position:absolute;
+	top:150;
+	left:1510;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#scorePlayer1{
+    margin:0px;
+    position:absolute;
+    top:2%;
+    left:40%;
+    font-family:'digital-clock-font';
+    font-size:160px;
+    color: white;
+    z-index: -1;
+}
+#scorePlayer2{
+    margin:0px;
+    position:absolute;
+    top: 2%;
+    right:40%;
+    font-family:'digital-clock-font';
+    font-size:160px;
+    color: white;
+    z-index: -1;
+}
+
+#scorePlayer3{
+    margin:0px;
+    position:absolute;
+    top: 2%;
+    right:40%;
+    font-family:'digital-clock-font';
+    font-size:160px;
+    color: white;
+    z-index: -1;
 }
 
 	/* Modal Content */

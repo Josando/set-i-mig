@@ -140,11 +140,12 @@ Jugador.prototype.estaJugant = function(){
   		 //Si la carta que hem extret és 0.5 o 1 i hi ha almenys una jugada i menys de 4 i
   		//en l'ultima jugada hi ha solament una carta i aquesta es 0.5 o 1 Aleshores obrim jugada
   		if (carta_.getPuntuacio()<=1 && this.jugades.length>=1 && this.jugades.length<4 && this.jugades[0].getNumCartes()==1 && this.jugades[this.jugades.length-1].getNumCartes()==1 && this.jugades[this.jugades.length-1].getCarta(0).getPuntuacio()<=1 ){
-  			return true;
-  	  	//Si no es compleixen les condicions anteriors el que fem es afegir la carta a la jugada actual
-  	  	}else{
+        return true;
+          	  	//Si no es compleixen les condicions anteriors el que fem es afegir la carta a la jugada actual
+  	  	}else{          
   			return false;
   	  	}
+
   	}
 
 module.exports = Jugador;
