@@ -53,13 +53,15 @@ function setimigEngine(partida_) {
             var top_inc = index * 40;
         }
 
-				if (tipus_jugador == "PLAYER3") {
-						var capa_id = "#Player3_jugada" + num_jugada;
-						var carta_class = "carta_meua";
-						var carta_id = "PLAYER3_" + num_jugada + "_" + index;
-						var left_inc = index * 80;
-						var top_inc = index * 40;
-				}
+
+        if (tipus_jugador == "PLAYER3") {
+            var capa_id = "#Player3_jugada" + num_jugada;
+            var carta_class = "carta_meua";
+            var carta_id = "PLAYER3_" + num_jugada + "_" + index;
+            var left_inc = index * 80;
+            var top_inc = index * 40;
+        }
+
 
         if (carta.getIsOculta()) {
 
@@ -68,8 +70,8 @@ function setimigEngine(partida_) {
             } else if (tipus_jugador == "PLAYER2") {
                 carta_class = "carta_meua_oculta1";
             } else if (tipus_jugador == "PLAYER3") {
-								carta_class = "carta_meua_oculta2";
-            }else {
+                carta_class = "carta_meua_oculta2";
+            } else {
                 carta_class = "carta_banca_oculta";
             }
 
@@ -80,7 +82,6 @@ function setimigEngine(partida_) {
 
         } else {
             img_carta = 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png';
-            console.log(img_carta);
         }
 
         var $d = $("<div>");
@@ -132,17 +133,17 @@ function setimigEngine(partida_) {
             for (var i = 0; i < jugador_.getNumJugades(); i++) {
                 $d.append(jugador_.getNom() + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).getPuntuacioJugada() + "<br>");
             }
-        }else if (jugador_.getTipus() == "PLAYER3") {
-						var isbuit = $("#punts_jugador3").length == 0;
-						if (isbuit) {
-								$d.attr('id', "punts_jugador3")
-							} else {
-								$d = $("#punts_jugador3");
-							}
-							$d.empty();
-							for (var i = 0; i < jugador_.getNumJugades(); i++) {
-								$d.append(jugador_.getNom() + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).getPuntuacioJugada() + "<br>");
-					}
+        } else if (jugador_.getTipus() == "PLAYER3") {
+            var isbuit = $("#punts_jugador3").length == 0;
+            if (isbuit) {
+                $d.attr('id', "punts_jugador3")
+            } else {
+                $d = $("#punts_jugador3");
+            }
+            $d.empty();
+            for (var i = 0; i < jugador_.getNumJugades(); i++) {
+                $d.append(jugador_.getNom() + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).getPuntuacioJugada() + "<br>");
+            }
         } else {
             var isbuit = $("#punts_banca").length == 0;
             $("#punts_banca").empty();
@@ -154,11 +155,12 @@ function setimigEngine(partida_) {
             }
             try {
                 if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant()) $d.html("Banca " + jugador_.getNom() + " = " + jugador_.getJugadaActual().getPuntuacioJugada());
-              //  console.log("mgder->" + $d.html());
+
+                //  console.log("mgder->" + $d.html());
             } catch (e) {
                 if (!partida.getJugador(1).estaJugant())
                     $d.html("Banca " + jugador_.getNom() + " = " + jugador_.getJugadaActual().getPuntuacioJugada());
-              //  console.log("mgder->" + $d.html());
+                //  console.log("mgder->" + $d.html());
             }
         }
         return $d;
@@ -175,12 +177,13 @@ function setimigEngine(partida_) {
             $d2.addClass("jugador_" + jugador_nom)
                 .attr('id', 'Player2_jugada' + ultima_jugada)
                 .appendTo("#tapet");
+
         } else if (tipus_jugador === "PLAYER3") {
-						var $d2 = $("<div>");
-						$d2.addClass("jugador_" + jugador_nom)
-								.attr('id', 'Player3_jugada' + ultima_jugada)
-								.appendTo("#tapet");
-        }else {
+            var $d2 = $("<div>");
+            $d2.addClass("jugador_" + jugador_nom)
+                .attr('id', 'Player3_jugada' + ultima_jugada)
+                .appendTo("#tapet");
+        } else {
             var $d2 = $("<div>");
             $d2.addClass("jugador_" + jugador_nom)
                 .attr('id', 'banca_jugada')
@@ -223,9 +226,9 @@ function setimigEngine(partida_) {
             top = "170px";
             left = left = 600 + index_jugada * 170;
         } else if (tipus_jugador == "PLAYER3") {
-						top = "170px";
-						left = left = 1140 + index_jugada * 170;
-        }else {
+            top = "170px";
+            left = left = 1140 + index_jugada * 170;
+        } else {
             top = "490px";
             left = "540px";
         }
@@ -253,9 +256,9 @@ function setimigEngine(partida_) {
             top = "170px";
             left = 600 + index_jugada * 170;
         } else if (tipus_jugador == "PLAYER3") {
-						top = "170px";
-						left = 1140 + index_jugada * 170;
-        }else {
+            top = "170px";
+            left = 1140 + index_jugada * 170;
+        } else {
             top = "490px";
             left = "540px";
         }

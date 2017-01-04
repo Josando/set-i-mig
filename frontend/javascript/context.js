@@ -16,6 +16,8 @@ var utils = require('./utils');
 
 function Context() {
 
+    this.score = 0;
+
     this.usersname = utils.getCookie("username");
     //console.log(this.usersname);
     this.jugador = new Array();
@@ -359,6 +361,7 @@ Context.prototype.contarPunts = function() {
                 if (this.jugador[j].getJugada(i).esValida() && this.jugador[j].getJugada(i).estaTancada()) {
                     if (this.jugador[j].getJugada(i).getPuntuacioJugada() > punts_banca) {
                         this.partida.getSetimigEngine().pintarWin(i, this.jugador[j].getTipus());
+                        increaseScore();
                     } else {
                         this.partida.getSetimigEngine().invalidarJugada(i, this.jugador[j].getTipus());
                     }
@@ -367,6 +370,25 @@ Context.prototype.contarPunts = function() {
         }
     }
 }
+/** Increase Score in one point */
+Context.prototype.increaseScore = function(){
+     this.score+=1;
+     var scoreEl = document.getElementById("scorePlayer1");
+     scoreEl.innerHTML = this.score;
+};
+
+Context.prototype.resetScores = function() {
+    this.stick.score = 0;
+    this.stick2.score = 0;
+    var scorePlayerOne = document.getElementById("scorePlayer1");
+    var scorePlayerTwo = document.getElementById("scorePlayer2");
+    var scorePlayerThree = document.getElementById("scorePlayer3");
+    scoreLeftEl.innerHTML = this.stick.score;
+    scoreRightEl.innerHTML = this.stick2.score;
+
+    //Reset to initial Speed
+    this.speed = this.initialSpeed;
+};
 
 
 

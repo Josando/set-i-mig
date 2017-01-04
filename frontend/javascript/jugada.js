@@ -10,6 +10,7 @@
  * @param {Carta} carta_ Primera carta que afegirem a la jugada.
  * @param {Jugador} jugador_ Referència al jugador al que pertany la jugada.
  */
+
 function Jugada(carta_, jugador_) {
     var jugador = jugador_;
     var cartes = new Array();
