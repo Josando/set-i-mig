@@ -209,6 +209,47 @@ h1 {
     width: 150px;
 }
 
+#Player3_jugada0{
+	position:absolute;
+	top:150;
+	left:1140;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#Player3_jugada1{
+	position:absolute;
+	top:150;
+	left:1310;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#Player3_jugada2{
+	position:absolute;
+	top:150;
+	left:1480;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+#Player3_jugada3{
+	position:absolute;
+	top:150;
+	left:1510;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+
+
 
 /*Score Css*/
 
