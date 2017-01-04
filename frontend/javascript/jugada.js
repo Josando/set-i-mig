@@ -138,6 +138,8 @@ function Jugada(carta_,jugador_){
 	this.getPuntuacioJugada=function(){
 		return puntuacio;
 	}
+
+
 }//END class Jugada
 
 module.exports = Jugada;
