@@ -217,7 +217,7 @@ function Context() {
             var raw_id_carta = $(this).attr('id');
             console.log(raw_id_carta);
             var ids_carta = raw_id_carta.split('_');
-            var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
+            var carta = self.jugador[3].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
             $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
         }
     );

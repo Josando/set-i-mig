@@ -80,6 +80,7 @@ function setimigEngine(partida_) {
 
         } else {
             img_carta = 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png';
+            console.log(img_carta);
         }
 
         var $d = $("<div>");
