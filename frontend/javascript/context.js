@@ -16,7 +16,9 @@ var utils = require('./utils');
 
 function Context() {
 
-    this.score = 0;
+    this.score1 = 0;
+    this.score2 = 0;
+    this.score3 = 0;
 
     this.usersname = utils.getCookie("username");
     //console.log(this.usersname);
@@ -353,43 +355,73 @@ Context.prototype.jugaBanca = function() {
 
 Context.prototype.contarPunts = function() {
 
-    if (!this.banca.estaJugant()) {
-        var punts_banca = this.banca.getJugadaActual().getPuntuacioJugada();
-        if (!this.banca.getJugadaActual().esValida()) punts_banca = 0;
-        for (var j = 1; j <= this.numerodejugadores; j++) {
-            for (var i = 0; i < this.jugador[j].getNumJugades(); i++) {
-                if (this.jugador[j].getJugada(i).esValida() && this.jugador[j].getJugada(i).estaTancada()) {
-                    if (this.jugador[j].getJugada(i).getPuntuacioJugada() > punts_banca) {
-                        this.partida.getSetimigEngine().pintarWin(i, this.jugador[j].getTipus());
-                        increaseScore();
-                    } else {
-                        this.partida.getSetimigEngine().invalidarJugada(i, this.jugador[j].getTipus());
+        if (!this.banca.estaJugant()) {
+            var punts_banca = this.banca.getJugadaActual().getPuntuacioJugada();
+            if (!this.banca.getJugadaActual().esValida()) punts_banca = 0;
+            for (var j = 1; j <= this.numerodejugadores; j++) {
+                for (var i = 0; i < this.jugador[j].getNumJugades(); i++) {
+                    if (this.jugador[j].getJugada(i).esValida() && this.jugador[j].getJugada(i).estaTancada()) {
+                        if (this.jugador[j].getJugada(i).getPuntuacioJugada() > punts_banca) {
+                            this.partida.getSetimigEngine().pintarWin(i, this.jugador[j].getTipus());
+
+                            this.increaseScore(j);
+                        } else {
+                            this.partida.getSetimigEngine().invalidarJugada(i, this.jugador[j].getTipus());
+                        }
                     }
                 }
             }
         }
     }
-}
-/** Increase Score in one point */
-Context.prototype.increaseScore = function(){
-     this.score+=1;
-     var scoreEl = document.getElementById("scorePlayer1");
-     scoreEl.innerHTML = this.score;
+    /** Increase Score in one point */
+Context.prototype.increaseScore = function(player) {
+    var count;
+    switch (player) {
+        case 1:
+            this.score1 += 1;
+            count = this.score1;
+            break;
+        case 2:
+            this.score2 += 1;
+            count = this.score2;
+            break;
+        case 3:
+            this.score3 += 1;
+            count = this.score3;
+            break;
+    }
+
+    var scoreEl = document.getElementById("scorePlayer" + player);
+    scoreEl.innerHTML = count;
+
+    if (count == 9)
+      this.showWinner(player);
 };
 
+//function increaseScore(){
+
+//alert("PUNTO");
+//}
+
 Context.prototype.resetScores = function() {
-    this.stick.score = 0;
-    this.stick2.score = 0;
+    this.score1 = 0;
+    this.score2 = 0;
+    this.score3 = 0;
     var scorePlayerOne = document.getElementById("scorePlayer1");
     var scorePlayerTwo = document.getElementById("scorePlayer2");
     var scorePlayerThree = document.getElementById("scorePlayer3");
-    scoreLeftEl.innerHTML = this.stick.score;
-    scoreRightEl.innerHTML = this.stick2.score;
+    scorePlayerOne.innerHTML = this.score1;
+    scorePlayerTwo.innerHTML = this.score2;
+    scorePlayerThree.innerHTML = this.score3;
 
     //Reset to initial Speed
     this.speed = this.initialSpeed;
 };
 
 
+Context.prototype.showWinner = function(player) {
+  alert(this.jugador[player].nom);
+  this.resetScores();
+}
 
 module.exports = Context;
