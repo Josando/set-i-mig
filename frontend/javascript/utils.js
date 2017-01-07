@@ -136,7 +136,7 @@ function showPlayerProfile() {
                 $('#player1').after(profileImg);
             }
             $('#player2').append(user2);
-            var dataImage2 = localStorage.getItem('imgData');
+            var dataImage2 = localStorage.getItem('imgData2');
             if (dataImage2) {
                 var profileImg2 = $('<img id="p2">');
                 profileImg2.attr('src', "data:image/jpg;base64," + dataImage2);
