@@ -202,13 +202,13 @@ function setimigEngine(partida_) {
                 "Obrir nova jugada": function() {
                     //alert("Obrir carta="+carta_aux2.getPal());
                     console.log(partida.getJugador(numerodeljugadoractual));
-                    alert(numerodeljugadoractual);
+                    //alert(numerodeljugadoractual);
                     partida.getJugador(numerodeljugadoractual).afegirJugada(carta_aux2);
                     $(this).dialog("close");
                     return true;
                 },
                 "Continuar amb la mateixa": function() {
-                  alert(numerodeljugadoractual);
+                  //alert(numerodeljugadoractual);
                     partida.getJugador(numerodeljugadoractual).afegir_carta_a_jugada_actual(carta_aux2);
                     $(this).dialog("close");
                     return false;
