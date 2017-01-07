@@ -152,7 +152,7 @@ function Context() {
                 if (self.jugador[2].getJugadaActual().esValida() && !self.jugador[2].getJugadaActual().estaTancada()) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[2].esPosibleObrir(carta_aux)) {
-                        self.partida.getSetimigEngine().obrimJugada(carta_aux, 1);
+                        self.partida.getSetimigEngine().obrimJugada(carta_aux, 2);
                     } else {
                         self.jugador[2].afegir_carta_a_jugada_actual(carta_aux);
                     }
@@ -167,7 +167,7 @@ function Context() {
                 if (self.jugador[3].getJugadaActual().esValida() && !self.jugador[3].getJugadaActual().estaTancada()) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[3].esPosibleObrir(carta_aux)) {
-                        self.partida.getSetimigEngine().obrimJugada(carta_aux, 2);
+                        self.partida.getSetimigEngine().obrimJugada(carta_aux, 3);
                     } else {
                         self.jugador[3].afegir_carta_a_jugada_actual(carta_aux);
                     }
