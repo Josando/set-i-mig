@@ -136,7 +136,7 @@ function showPlayerProfile() {
                 $('#player1').after(profileImg);
             }
             $('#player2').append(user2);
-            var dataImage2 = localStorage.getItem('imgData');
+            var dataImage2 = localStorage.getItem('imgData2');
             if (dataImage2) {
                 var profileImg2 = $('<img id="p2">');
                 profileImg2.attr('src', "data:image/jpg;base64," + dataImage2);
@@ -175,11 +175,6 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
 
     var user = getCookie("username");
 
-
-    /*if (user !== "" && numberOfPlayers == 1) {
-        showPlayerProfile();
-        callBackFunction;
-    } else */
     if (numberOfPlayers == 1) {
         getModalTemplate("modal-player-profile", function($template) {
             $("#blah").hide();
@@ -200,7 +195,7 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
             });
 
             $("#imgProfile").change(function() {
-                readFileAndPreviewFromLocalFileSystem(this);
+                readFileAndPreviewFromLocalFileSystem(this, 1);
             });
 
         });
@@ -229,17 +224,16 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
             });
 
             $("#imgProfile").change(function() {
-                readFileAndPreviewFromLocalFileSystem(this);
+                readFileAndPreviewFromLocalFileSystem(this, 1);
             });
             $("#imgProfile2").change(function() {
-                readFileAndPreviewFromLocalFileSystem(this);
+                readFileAndPreviewFromLocalFileSystem(this, 2);
 
             });
 
         });
 
     }
-
 
     if (numberOfPlayers == 3) {
         getModalTemplate("modal-player-profile", function($template) {
@@ -265,7 +259,15 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
             });
 
             $("#imgProfile").change(function() {
-                readFileAndPreviewFromLocalFileSystem(this);
+                readFileAndPreviewFromLocalFileSystem(this, 1);
+            });
+            $("#imgProfile2").change(function() {
+                readFileAndPreviewFromLocalFileSystem(this, 2);
+
+            });
+
+            $("#imgProfile3").change(function() {
+                readFileAndPreviewFromLocalFileSystem(this, 3);
             });
 
         });
@@ -287,37 +289,58 @@ function getBase64Image(img) {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 //We convert before saving to base64
-function saveImageToLocalStorage() {
-    var imgData = getBase64Image($('#blah')[0]);
-    var imgData2 = getBase64Image($('#blah2')[0]);
-    localStorage.setItem("imgData", imgData);
-    localStorage.setItem("imgData2", imgData2)
+function saveImageToLocalStorage(numberOfPlayers) {
+    switch (numberOfPlayers) {
+        case 1:
+            var imgData = getBase64Image($('#blah')[0]);
+            localStorage.setItem("imgData", imgData);
+            break;
+        case 2:
+            var imgData2 = getBase64Image($('#blah2')[0]);
+            localStorage.setItem("imgData2", imgData2);
+            break;
+        case 3:
+            var imgData3 = getBase64Image($('#blah3')[0]);
+            localStorage.setItem("imgData3", imgData3);
+            break;
+    }
+
 }
 
 //We choose a image profile from local system and we do a preview
-function readFileAndPreviewFromLocalFileSystem(input) {
+function readFileAndPreviewFromLocalFileSystem(input, players) {
 
-  if (input.id == "imgProfile") {
-    if (input.files && input.files[0]) {
-       $('#blah').show();
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
-            saveImageToLocalStorage();
-        };
-        reader.readAsDataURL(input.files[0]);
+    if (players == 1) {
+        if (input.files && input.files[0]) {
+            $('#blah').show();
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+                saveImageToLocalStorage(1);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    } else if (players == 2) {
+        if (input.files && input.files[0]) {
+            $('#blah2').show();
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#blah2').attr('src', e.target.result);
+                saveImageToLocalStorage(2);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    } else if (players == 3) {
+        if (input.files && input.files[0]) {
+            $('#blah3').show();
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#blah3').attr('src', e.target.result);
+                saveImageToLocalStorage(3);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-  }else {
-    if (input.files && input.files[0]) {
-       $('#blah2').show();
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#blah2').attr('src', e.target.result);
-            saveImageToLocalStorage();
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-  }
 }
 
 function chooseGameMode(context_) {
