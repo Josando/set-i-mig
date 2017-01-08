@@ -1,12 +1,14 @@
-# PONG game using javascript and nodeJS with require
+# SEVEN & A HALF game using javascript and nodeJS with require
 
 ## Introduction
-We are going to implement PONG. One of first console games in history
-Take a look at [www.ponggame.org](http://www.ponggame.org/)
+We are going to implement SEVEN & A HALF. An italian card game (known as Sette e mezzo) commonly played in Spain.
+The purpose of the game is to achieve the highest score possible without exceeding 7.5 playing against a dealer.
 
+There are different variants of this game but in this case we are playing with the standar rules:
+Cards from ace to 7 are worth as many points as their numeric value, with the ace equaling one point. Face cards are worth half a point.
+
+### Technical notes
 We are using nodeJS ecosystem in this project in an unusual way. Mostly focused on client side web development. We use requirejs module very useful in order to architect our project in a more scalable way.
-
-LIVE DEMO: https://pong2.herokuapp.com/
 
 ## Run the project
 In order to run for first time the project , you should install nodejs and npm in your computer:
@@ -29,19 +31,3 @@ styles/**
 index.html
 
 The other files are only required for development purposes
-
-## Run the tests
-
-`./node_modules/gulp/bin/gulp.js tdd`
-
-## Generate project documentation
-
-`./node_modules/gulp/bin/gulp.js doc`
-
-
-## Deploy project automatically to heroku
-Everytime we do a push to master branch on github DEMO: https://pong2.herokuapp.com/ gets updated with latest changes. We have created an app on heroku and We've linked to our gitthub repository.
-
-##TODO
-
-NICE TO READ: https://www.devbridge.com/articles/dependency-injection-in-javascript/
