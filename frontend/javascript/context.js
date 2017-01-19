@@ -34,7 +34,7 @@ function Context() {
             self.jugador[1].getJugadaActual().tancarJugada();
             if (self.jugador[1].estaJugant() == false) {
                 if (self.jugador[1].hiHaAlgunaJugadaValida()) {
-                    self.banca.getJugada(0).getCarta(0).setOculta(false);
+                    self.banca.getJugada(0).getCarta(0).oculta = false;
                     self.partida.getSetimigEngine().pintarCarta(self.banca.getJugada(0).getCarta(0), 0, 0, "BANCA");
                     self.jugaBanca();
                 }
@@ -49,7 +49,7 @@ function Context() {
                 self.jugador[2].getJugadaActual().tancarJugada();
                 if (self.jugador[2].estaJugant() == false) {
                     if (self.jugador[2].hiHaAlgunaJugadaValida()) {
-                        self.banca.getJugada(0).getCarta(0).setOculta(false);
+                        self.banca.getJugada(0).getCarta(0).oculta = false;
                         self.partida.getSetimigEngine().pintarCarta(self.banca.getJugada(0).getCarta(0), 0, 0, "BANCA");
                         self.jugaBanca();
                     }
@@ -71,7 +71,7 @@ function Context() {
                 self.jugador[3].getJugadaActual().tancarJugada();
                 if (self.jugador[3].estaJugant() == false) {
                     if (self.jugador[3].hiHaAlgunaJugadaValida()) {
-                        self.banca.getJugada(0).getCarta(0).setOculta(false);
+                        self.banca.getJugada(0).getCarta(0).oculta = false;
                         self.partida.getSetimigEngine().pintarCarta(self.banca.getJugada(0).getCarta(0), 0, 0, "BANCA");
                         self.jugaBanca();
                     }
@@ -81,8 +81,12 @@ function Context() {
     });
 
     $("#btnAgarraCarta").click(function() {
+      // console.log(self.numerodejugadores);
         if (self.numerodejugadores == 1) {
-            if (self.jugador[1].getJugadaActual().esValida() && !self.jugador[1].getJugadaActual().estaTancada()) {
+          // console.log(self.numerodejugadores);
+          // console.log("Hola");
+          // self.jugador[1].jugades[self.jugada_actual].valida &&
+            if ( self.jugador[1].getJugadaActual().valida && !self.jugador[1].getJugadaActual().tancada) {
                 var carta_aux = self.baralla_.agarraCarta();
                 if (self.jugador[1].esPosibleObrir(carta_aux)) {
                     self.partida.getSetimigEngine().obrimJugada(carta_aux, 1);
@@ -91,7 +95,7 @@ function Context() {
                 }
                 if (self.jugador[1].estaJugant() == false) {
                     if (self.jugador[1].hiHaAlgunaJugadaValida()) {
-                        self.banca.getJugada(0).getCarta(0).setOculta(false);
+                        self.banca.getJugada(0).getCarta(0).oculta = false;
                         self.partida.getSetimigEngine().pintarCarta(self.banca.getJugada(0).getCarta(0), 0, 0, "BANCA");
                         self.jugaBanca();
                     } else {
@@ -103,8 +107,9 @@ function Context() {
                 if (self.banca.estaJugant() == false) self.nova_ronda();
             }
         } else if (self.numerodejugadores == 2) {
+          console.log(self.jugador[1].estaJugant());
             if (self.jugador[1].estaJugant() == true) {
-                if (self.jugador[1].getJugadaActual().esValida() && !self.jugador[1].getJugadaActual().estaTancada()) {
+                if (self.jugador[1].getJugadaActual().valida && !self.jugador[1].getJugadaActual().tancada) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[1].esPosibleObrir(carta_aux)) {
                         self.partida.getSetimigEngine().obrimJugada(carta_aux, 1);
@@ -116,7 +121,7 @@ function Context() {
                     $("#tancar_jugada").css("left", 600);
                 }
             } else {
-                if (self.jugador[2].getJugadaActual().esValida() && !self.jugador[2].getJugadaActual().estaTancada()) {
+                if (self.jugador[2].getJugadaActual().valida && !self.jugador[2].getJugadaActual().tancada) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[2].esPosibleObrir(carta_aux)) {
                         self.partida.getSetimigEngine().obrimJugada(carta_aux, 2);
@@ -125,7 +130,7 @@ function Context() {
                     }
                     if (self.jugador[2].estaJugant() == false) {
                         if (self.jugador[1].hiHaAlgunaJugadaValida() || self.jugador[2].hiHaAlgunaJugadaValida()) {
-                            self.banca.getJugada(0).getCarta(0).setOculta(false);
+                            self.banca.getJugada(0).getCarta(0).oculta = false;
                             self.partida.getSetimigEngine().pintarCarta(self.banca.getJugada(0).getCarta(0), 0, 0, "BANCA");
                             self.jugaBanca();
                         } else {
@@ -139,7 +144,7 @@ function Context() {
             }
         } else {
             if (self.jugador[1].estaJugant() == true) {
-                if (self.jugador[1].getJugadaActual().esValida() && !self.jugador[1].getJugadaActual().estaTancada()) {
+                if (self.jugador[1].getJugadaActual().valida && !self.jugador[1].getJugadaActual().tancada) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[1].esPosibleObrir(carta_aux)) {
                         self.partida.getSetimigEngine().obrimJugada(carta_aux, 1);
@@ -151,7 +156,7 @@ function Context() {
                     $("#tancar_jugada").css("left", 600);
                 }
             } else if (self.jugador[2].estaJugant() == true) {
-                if (self.jugador[2].getJugadaActual().esValida() && !self.jugador[2].getJugadaActual().estaTancada()) {
+                if (self.jugador[2].getJugadaActual().valida && !self.jugador[2].getJugadaActual().tancada) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[2].esPosibleObrir(carta_aux)) {
                         self.partida.getSetimigEngine().obrimJugada(carta_aux, 2);
@@ -166,7 +171,7 @@ function Context() {
 
             } else {
 
-                if (self.jugador[3].getJugadaActual().esValida() && !self.jugador[3].getJugadaActual().estaTancada()) {
+                if (self.jugador[3].getJugadaActual().valida && !self.jugador[3].getJugadaActual().tancada) {
                     var carta_aux = self.baralla_.agarraCarta();
                     if (self.jugador[3].esPosibleObrir(carta_aux)) {
                         self.partida.getSetimigEngine().obrimJugada(carta_aux, 3);
@@ -175,7 +180,7 @@ function Context() {
                     }
                     if (self.jugador[3].estaJugant() == false) {
                         if (self.jugador[1].hiHaAlgunaJugadaValida() || self.jugador[2].hiHaAlgunaJugadaValida() || self.jugador[3].hiHaAlgunaJugadaValida()) {
-                            self.banca.getJugada(0).getCarta(0).setOculta(false);
+                            self.banca.getJugada(0).getCarta(0).oculta = false;
                             self.partida.getSetimigEngine().pintarCarta(self.banca.getJugada(0).getCarta(0), 0, 0, "BANCA");
                             self.jugaBanca();
                         } else {
@@ -200,7 +205,7 @@ function Context() {
             //console.log(raw_id_carta);
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[1].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
+            $(this).children(":first").attr('src', 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.png');
         }
     );
 
@@ -211,7 +216,7 @@ function Context() {
             //console.log(raw_id_carta);
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
+            $(this).children(":first").attr('src', 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.png');
         }
     );
 
@@ -222,7 +227,7 @@ function Context() {
             console.log(raw_id_carta);
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[3].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            $(this).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
+            $(this).children(":first").attr('src', 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.png');
         }
     );
 
@@ -232,7 +237,7 @@ function Context() {
             var raw_id_carta = $(this).attr('id');
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[1].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            if (carta.getIsOculta())
+            if (carta.oculta)
                 $(this).children(":first").attr('src', 'images/baralla/revers_small.png');
         }
     );
@@ -242,7 +247,7 @@ function Context() {
             var raw_id_carta = $(this).attr('id');
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            if (carta.getIsOculta())
+            if (carta.oculta)
                 $(this).children(":first").attr('src', 'images/baralla/revers_small.png');
         }
     );
@@ -252,7 +257,7 @@ function Context() {
             var raw_id_carta = $(this).attr('id');
             var ids_carta = raw_id_carta.split('_');
             var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-            if (carta.getIsOculta())
+            if (carta.oculta)
                 $(this).children(":first").attr('src', 'images/baralla/revers_small.png');
         }
     );
@@ -262,8 +267,8 @@ function Context() {
         var ids_carta = raw_id_carta.split('_');
         var carta = self.jugador[1].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
         $(self).attr("class", "carta_meua");
-        $(self).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.jpg');
-        carta.setOculta(false);
+        $(self).children(":first").attr('src', 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.jpg');
+        carta.oculta = false;
     });
 
     $(document).on('dblclick', '.carta_meua_oculta1', function(event) {
@@ -271,8 +276,8 @@ function Context() {
         var ids_carta = raw_id_carta.split('_');
         var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
         $(self).attr("class", "carta_meua");
-        $(self).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
-        carta.setOculta(false);
+        $(self).children(":first").attr('src', 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.png');
+        carta.oculta = false;
     });
 
     $(document).on('dblclick', '.carta_meua_oculta2', function(event) {
@@ -280,8 +285,8 @@ function Context() {
         var ids_carta = raw_id_carta.split('_');
         var carta = self.jugador[2].getJugada(ids_carta[1]).getCarta(ids_carta[2]);
         $(self).attr("class", "carta_meua");
-        $(self).children(":first").attr('src', 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png');
-        carta.setOculta(false);
+        $(self).children(":first").attr('src', 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.png');
+        carta.oculta = false;
     });
 }
 
@@ -334,7 +339,7 @@ Context.prototype.nova_ronda = function() {
 Context.prototype.jugaBanca = function() {
     var continua = false;
     var self = this.ContextSelf();
-    if (this.banca.getJugadaActual().getPuntuacioJugada() < 5.5) {
+    if (this.banca.getJugadaActual().puntuacio < 5.5) {
         this.banca.afegir_carta_a_jugada_actual(this.baralla_.agarraCarta());
         setTimeout(function() {
             self.jugaBanca();
@@ -344,7 +349,7 @@ Context.prototype.jugaBanca = function() {
     }
 
     if (continua) {
-        if (this.banca.getJugadaActual().esValida()) {
+        if (this.banca.getJugadaActual().valida) {
             this.banca.getJugadaActual().tancarJugada();
             this.contarPunts();
         } else {
@@ -356,17 +361,17 @@ Context.prototype.jugaBanca = function() {
 Context.prototype.contarPunts = function() {
 
         if (!this.banca.estaJugant()) {
-            var punts_banca = this.banca.getJugadaActual().getPuntuacioJugada();
-            if (!this.banca.getJugadaActual().esValida()) punts_banca = 0;
+            var punts_banca = this.banca.getJugadaActual().puntuacio;
+            if (!this.banca.getJugadaActual().valida) punts_banca = 0;
             for (var j = 1; j <= this.numerodejugadores; j++) {
-                for (var i = 0; i < this.jugador[j].getNumJugades(); i++) {
-                    if (this.jugador[j].getJugada(i).esValida() && this.jugador[j].getJugada(i).estaTancada()) {
-                        if (this.jugador[j].getJugada(i).getPuntuacioJugada() > punts_banca) {
-                            this.partida.getSetimigEngine().pintarWin(i, this.jugador[j].getTipus());
+                for (var i = 0; i < this.jugador[j].jugades.length; i++) {
+                    if (this.jugador[j].getJugada(i).valida && this.jugador[j].getJugada(i).tancada) {
+                        if (this.jugador[j].getJugada(i).puntuacio > punts_banca) {
+                            this.partida.getSetimigEngine().pintarWin(i, this.jugador[j].tipus);
 
                             this.increaseScore(j);
                         } else {
-                            this.partida.getSetimigEngine().invalidarJugada(i, this.jugador[j].getTipus());
+                            this.partida.getSetimigEngine().invalidarJugada(i, this.jugador[j].tipus);
                         }
                     }
                 }

@@ -10,171 +10,154 @@
  * @param {Carta} carta_ Primera carta que afegirem a la jugada.
  * @param {Jugador} jugador_ Referència al jugador al que pertany la jugada.
  */
+var Jugada = function(carta_, jugador_) {
+    this.jugador = jugador_;
+    this.cartes = new Array();
+    this.valida = true;
+    this.tancada = false;
+    //console.log(carta_);
+    this.puntuacio = carta_.valor;
+    this.quants_asos = 0;
 
-function Jugada(carta_, jugador_) {
-    var jugador = jugador_;
-    var cartes = new Array();
-    console.log(jugador_);
-    //La primera carta de les jugades obertes la destapem
-    if (jugador_.getNumJugades() >= 1 && jugador_.getTipus() == "PLAYER1") {
-        carta_.setOculta(false);
-        jugador_.getJugada(0).getCarta(0).setOculta(false);
+    if (this.jugador.jugades.length >= 1 && this.jugador.tipus == "PLAYER1") {
+        carta_.oculta = false;
+        this.jugador.getJugada(0).getCarta(0).oculta = false;
 
-        if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().pintarCarta(jugador_.getJugada(0).getCarta(0), 0, 0, "NORMAL");
+        if (this.jugador.partida != null) this.jugador.partida.getSetimigEngine().pintarCarta(this.jugador.getJugada(0).getCarta(0), 0, 0, "NORMAL");
 
 
         //La primera carta de la 1ra jugada la repartim oculta
     } else {
-        carta_.setOculta(true);
+        carta_.oculta = true;
     }
-    cartes[0] = carta_;
-    if (jugador.getPartida() != null) {
+    this.cartes[0] = carta_;
+    if (this.jugador.partida != null) {
 
-        jugador.getPartida().getSetimigEngine().pintarJugada(jugador.getNom(), jugador.getTipus(), jugador.getNumJugades());
-        jugador.getPartida().getSetimigEngine().pintarCarta(carta_, jugador.getNumJugades(), 0, jugador.getTipus());
+        this.jugador.partida.getSetimigEngine().pintarJugada(this.jugador.nom, this.jugador.tipus, this.jugador.jugades.length);
+        this.jugador.partida.getSetimigEngine().pintarCarta(carta_, this.jugador.jugades.length, 0, this.jugador.tipus);
     }
 
-    var valida = true;
-    var tancada = false;
-    //console.log(carta_);
-    var puntuacio = carta_.getPuntuacio();
-    var quants_asos = 0;
+    if (carta_.nom == "1") this.quants_asos = 1;
+}
 
-    if (carta_.getNom() == "1") quants_asos = 1;
+Jugada.prototype.afegir_carta = function(carta_) {
+    if (this.valida) {
+        this.cartes[this.cartes.length] = carta_;
+        if (carta_.nom == "1") this.quants_asos += 1;
+        this.puntuacio += carta_.valor;
 
-    this.afegir_carta = function(carta_) {
-        console.log(carta_);
-        if (valida) {
-            cartes[cartes.length] = carta_;
-            if (carta_.getNom() == "1") quants_asos += 1;
-            puntuacio += carta_.getPuntuacio();
+        //Pintem abans de descobrir si la jugada és vàlida o no
+        var ja = this.jugador.jugada_actual;
+        if (!this.hiHaAlgunaCartaOculta() && this.jugador.tipus == "PLAYER1") carta_.oculta = true;
 
-            //Pintem abans de descobrir si la jugada és vàlida o no
-            var ja = jugador.getIndexJugadaActual();
-            if (!this.hiHaAlgunaCartaOculta() && jugador_.getTipus() == "PLAYER1") carta_.setOculta(true);
+        if (this.jugador.partida != null) this.jugador.partida.getSetimigEngine().pintarCarta(carta_, ja, this.cartes.length - 1, this.jugador.tipus);
 
-            if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().pintarCarta(carta_, ja, cartes.length - 1, jugador.getTipus());
-
-            valida = this.checkValidesa();
-            if (!valida) {
-                this.tancarJugada();
-            } else if (puntuacio == 7.5) {
-                //Si tenim un 7.5 tanquem la jugada
-                this.tancarJugada();
-            }
-        } else {
-            throw new Error("JugadaInvalida");
+        this.valida = this.checkValidesa();
+        if (!this.valida) {
+            this.tancarJugada();
+        } else if (this.puntuacio == 7.5) {
+            //Si tenim un 7.5 tanquem la jugada
+            this.tancarJugada();
         }
+    } else {
+        throw new Error("JugadaInvalida");
     }
+}
+Jugada.prototype.getNumCartes = function() {
+    return this.cartes.length;
+}
 
-    this.getNumCartes = function() {
-        return cartes.length;
-    }
-
-    /**
-     * Obtenim una instancia carta d'una jugada a partir d'un index
-     *
-     * @param {number} index Quina carta volem
-     * @throws {IndexOutOfBoundaries} Si intentem accedir a una jugada que no existeix
-     * @returns {Carta} Retorna una instancia Carta
-     */
-    this.getCarta = function(index) {
-        if (typeof cartes[index] == 'undefined')
-            throw new Error("out of bounds baby");
-        else
-            return cartes[index];
-    }
-
-    this.tancarJugada = function() {
-        tancada = true;
-        if (jugador_.getTipus() == "PLAYER1") {
-            if (!valida) {
-                //alert("PAra El carro "+valida);
-                if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().invalidarJugada(jugador.getIndexJugadaActual(), jugador.getTipus());
-            }
-
-            jugador.changeJugadaActual();
-            //PAssar a pintar.js
-
-            $("#tancar_jugada").css("left", 50 + jugador.getIndexJugadaActual() * 170);
-
-        } else if (jugador_.getTipus() == "PLAYER2") {
-            if (!valida) {
-                //alert("PAra El carro "+valida);
-                if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().invalidarJugada(jugador.getIndexJugadaActual(), jugador.getTipus());
-            }
-
-            jugador.changeJugadaActual();
-            //PAssar a pintar.js
-
-            $("#tancar_jugada").css("left", 600 + jugador.getIndexJugadaActual() * 170);
-        } else if (jugador_.getTipus() == "PLAYER3") {
-            if (!valida) {
-                //alert("PAra El carro "+valida);
-                if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().invalidarJugada(jugador.getIndexJugadaActual(), jugador.getTipus());
-            }
-
-            jugador.changeJugadaActual();
-            //PAssar a pintar.js
-
-            $("#tancar_jugada").css("left", 1140 + jugador.getIndexJugadaActual() * 170);
-        } else {
-            if (!valida) {
-                //alert("PAra El carro "+valida);
-                if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().invalidarJugada(jugador.getIndexJugadaActual(), jugador.getTipus());
-            }
-
-            jugador.changeJugadaActual();
-            //PAssar a pintar.js
-
-            $("#tancar_jugada").css("left", 50 + jugador.getIndexJugadaActual() * 170);
+/**
+ * Obtenim una instancia carta d'una jugada a partir d'un index
+ *
+ * @param {number} index Quina carta volem
+ * @throws {IndexOutOfBoundaries} Si intentem accedir a una jugada que no existeix
+ * @returns {Carta} Retorna una instancia Carta
+ */
+Jugada.prototype.getCarta = function(index) {
+    if (typeof this.cartes[index] == 'undefined')
+        throw new Error("out of bounds baby");
+    else
+        return this.cartes[index];
+}
+Jugada.prototype.tancarJugada = function() {
+    this.tancada = true;
+    if (this.jugador.tipus == "PLAYER1") {
+        if (!this.valida) {
+            //alert("PAra El carro "+valida);
+            if (this.jugador.partida != null) this.jugador.partida.getSetimigEngine().invalidarJugada(this.jugador.jugada_actual, this.jugador.tipus);
         }
 
+        this.jugador.changeJugadaActual();
+        //PAssar a pintar.js
+
+        $("#tancar_jugada").css("left", 50 + this.jugador.jugada_actual * 170);
+
+    } else if (this.jugador.tipus == "PLAYER2") {
+        if (!this.valida) {
+            //alert("PAra El carro "+valida);
+            if (this.jugador.partida != null) this.jugador.partida.getSetimigEngine().invalidarJugada(this.jugador.jugada_actual, this.jugador.tipus);
+        }
+
+        this.jugador.changeJugadaActual();
+        //PAssar a pintar.js
+
+        $("#tancar_jugada").css("left", 600 + this.jugador.jugada_actual * 170);
+    } else if (this.jugador.tipus == "PLAYER3") {
+        if (!this.valida) {
+            //alert("PAra El carro "+valida);
+            if (this.jugador.partida != null) this.jugador.partida.getSetimigEngine().invalidarJugada(this.jugador.jugada_actual, this.jugador.tipus);
+        }
+
+        this.jugador.changeJugadaActual();
+        //PAssar a pintar.js
+
+        $("#tancar_jugada").css("left", 1140 + this.jugador.jugada_actual * 170);
+    } else {
+        if (!this.valida) {
+            //alert("PAra El carro "+valida);
+            if (this.jugador.partida != null) this.jugador.partida.getSetimigEngine().invalidarJugada(this.jugador.jugada_actual, this.jugador.tipus);
+        }
+
+        this.jugador.changeJugadaActual();
+        //PAssar a pintar.js
+
+        $("#tancar_jugada").css("left", 50 + this.jugador.jugada_actual * 170);
     }
 
-    this.esValida = function() {
-        return valida;
+}
+Jugada.prototype.hiHaAlgunaCartaOculta = function() {
+    var hiha = false;
+    for (var i = 0; i < this.cartes.length; i++) {
+        if (this.cartes[i].oculta) {
+            hiha = true;
+            break;
+        }
     }
-
-    this.estaTancada = function() {
-        return tancada;
+    return hiha;
+}
+Jugada.prototype.checkValidesa = function() {
+    if (this.puntuacio > 7.5 && this.quants_asos == 0) {
+        return false;
     }
-
-    this.hiHaAlgunaCartaOculta = function() {
-        var hiha = false;
-        for (var i = 0; i < cartes.length; i++) {
-            if (cartes[i].getIsOculta()) {
-                hiha = true;
-                break;
+    if (this.puntuacio <= 7.5) {
+        return true;
+    }
+    if (this.puntuacio > 7.5 && this.quants_asos > 0) {
+        var provable = false;
+        for (var i = 0; i < this.quants_asos; i++) {
+            this.puntuacio = this.puntuacio - 0.5;
+            console.log("MERDA " + this.quants_asos);
+            if (this.puntuacio <= 7.5) {
+                provable = true;
             }
+            if (provable) break;
         }
-        return hiha;
-    }
-    this.checkValidesa = function() {
-        if (puntuacio > 7.5 && quants_asos == 0) {
-            return false;
-        }
-        if (puntuacio <= 7.5) {
-            return true;
-        }
-        if (puntuacio > 7.5 && quants_asos > 0) {
-            var provable = false;
-            for (var i = 0; i < quants_asos; i++) {
-                puntuacio = puntuacio - 0.5;
-                console.log("MERDA " + quants_asos);
-                if (puntuacio <= 7.5) {
-                    provable = true;
-                }
-                if (provable) break;
-            }
-            return provable;
-
-        }
+        return provable;
 
     }
-    this.getPuntuacioJugada = function() {
-        return puntuacio;
-    }
-} //END class Jugada
+
+}
+
 
 module.exports = Jugada;

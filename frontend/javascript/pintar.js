@@ -63,7 +63,7 @@ function setimigEngine(partida_) {
         }
 
 
-        if (carta.getIsOculta()) {
+        if (carta.oculta) {
 
             if (tipus_jugador == "PLAYER1") {
                 carta_class = "carta_meua_oculta";
@@ -81,7 +81,7 @@ function setimigEngine(partida_) {
             var img_carta = "images/baralla/revers_small.png";
 
         } else {
-            img_carta = 'images/baralla/' + carta.getPal() + '/' + carta.getPal() + '_' + carta.getNom() + '.png';
+            img_carta = 'images/baralla/' + carta.pal + '/' + carta.pal + '_' + carta.nom + '.png';
         }
 
         var $d = $("<div>");
@@ -109,7 +109,7 @@ function setimigEngine(partida_) {
      */
     this.pintarPuntuacio = function(jugador_) {
         var $d = $("<span>");
-        if (jugador_.getTipus() == "PLAYER1") {
+        if (jugador_.tipus == "PLAYER1") {
             var isbuit = $("#punts_jugador1").length == 0;
 
             if (isbuit) {
@@ -118,11 +118,11 @@ function setimigEngine(partida_) {
                 $d = $("#punts_jugador1");
             }
             $d.empty();
-            for (var i = 0; i < jugador_.getNumJugades(); i++) {
-                $d.append(jugador_.getNom() + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).getPuntuacioJugada() + "<br>");
+            for (var i = 0; i < jugador_.jugades.length; i++) {
+                $d.append(jugador_.nom + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).puntuacio + "<br>");
             }
 
-        } else if (jugador_.getTipus() == "PLAYER2") {
+        } else if (jugador_.tipus == "PLAYER2") {
             var isbuit = $("#punts_jugador2").length == 0;
             if (isbuit) {
                 $d.attr('id', "punts_jugador2")
@@ -130,10 +130,10 @@ function setimigEngine(partida_) {
                 $d = $("#punts_jugador2");
             }
             $d.empty();
-            for (var i = 0; i < jugador_.getNumJugades(); i++) {
-                $d.append(jugador_.getNom() + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).getPuntuacioJugada() + "<br>");
+            for (var i = 0; i < jugador_.jugades.length; i++) {
+                $d.append(jugador_.nom + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).puntuacio + "<br>");
             }
-        } else if (jugador_.getTipus() == "PLAYER3") {
+        } else if (jugador_.tipus == "PLAYER3") {
             var isbuit = $("#punts_jugador3").length == 0;
             if (isbuit) {
                 $d.attr('id', "punts_jugador3")
@@ -141,8 +141,8 @@ function setimigEngine(partida_) {
                 $d = $("#punts_jugador3");
             }
             $d.empty();
-            for (var i = 0; i < jugador_.getNumJugades(); i++) {
-                $d.append(jugador_.getNom() + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).getPuntuacioJugada() + "<br>");
+            for (var i = 0; i < jugador_.jugades.length; i++) {
+                $d.append(jugador_.nom + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).puntuacio + "<br>");
             }
         } else {
             var isbuit = $("#punts_banca").length == 0;
@@ -154,12 +154,12 @@ function setimigEngine(partida_) {
                 $d = $("#punts_banca");
             }
             try {
-                if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant()) $d.html("Banca " + jugador_.getNom() + " = " + jugador_.getJugadaActual().getPuntuacioJugada());
+                if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant()) $d.html("Banca " + jugador_.nom + " = " + jugador_.jugada_actual.puntuacio);
 
                 //  console.log("mgder->" + $d.html());
             } catch (e) {
                 if (!partida.getJugador(1).estaJugant())
-                    $d.html("Banca " + jugador_.getNom() + " = " + jugador_.getJugadaActual().getPuntuacioJugada());
+                    $d.html( jugador_.nom + " = " + jugador_.jugades[jugador_.jugada_actual].puntuacio);
                 //  console.log("mgder->" + $d.html());
             }
         }
