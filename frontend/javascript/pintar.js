@@ -145,6 +145,7 @@ function setimigEngine(partida_) {
                 $d.append(jugador_.nom + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).puntuacio + "<br>");
             }
         } else {
+          console.log(jugador_);
             var isbuit = $("#punts_banca").length == 0;
             $("#punts_banca").empty();
 
@@ -154,8 +155,8 @@ function setimigEngine(partida_) {
                 $d = $("#punts_banca");
             }
             try {
-                if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant()) $d.html("Banca " + jugador_.nom + " = " + jugador_.jugada_actual.puntuacio);
-
+                if (!partida.getJugador(1).estaJugant() && !partida.getJugador(2).estaJugant() && !partida.getJugador(3).estaJugant()) $d.html("Banca  = " + jugador_.jugades[jugador_.jugada_actual].puntuacio);
+                console.log();
                 //  console.log("mgder->" + $d.html());
             } catch (e) {
                 if (!partida.getJugador(1).estaJugant())
