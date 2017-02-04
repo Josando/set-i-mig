@@ -1,0 +1,46 @@
+<!-- The Modal -->
+<div id="modal-player-profile" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">X</span>
+      <h2>Personal profile</h2>
+    </div>
+    <div class="modal-body">
+      <form id="form1" runat="server">
+
+          <label for="nickname_">Nickname(*):</label>
+          <input type='text' id="nickname_" /><br>
+          <label for="imgProfile">Profile Picture(.jpg):</label>
+          <input type='file' id="imgProfile" />
+        <img width="48px" height="64px" id="blah" src="#" alt="your image" />
+      </form>
+
+      <form id="form2" runat="server">
+
+          <label for="nickname_2">Nickname(*):</label>
+          <input type='text' id="nickname_2" /><br>
+          <label for="imgProfile2">Profile Picture(.jpg):</label>
+          <input type='file' id="imgProfile2" />
+        <img width="48px" height="64px" id="blah2" src="#" alt="your image" />
+      </form>
+
+      <form id="form3" runat="server">
+
+          <label for="nickname_3">Nickname(*):</label>
+          <input type='text' id="nickname_3" /><br>
+          <label for="imgProfile3">Profile Picture(.jpg):</label>
+          <input type='file' id="imgProfile3" />
+        <img width="48px" height="64px" id="blah3" src="#" alt="your image" />
+      </form>
+
+      <input class="option" type='button' id="submitPlayerInformation" value="Ready!"/>
+
+    </div>
+    <div class="modal-footer">
+      <h5>This information is stored only on client side. </h5>
+      <h5>* mandatory</h5>
+      <h5>Close modal dialog once mandatory field nickname is filled</h5>
+    </div>
+  </div>
+</div>
