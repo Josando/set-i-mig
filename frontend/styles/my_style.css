@@ -27,6 +27,7 @@ h1 {
 .carta_meua_oculta {
     position: absolute;
     left: 10;
+      width: 100%;
 }
 
 .carta_meua_oculta1 {
@@ -120,7 +121,6 @@ h1 {
     top: 150;
     left: 30;
     text-align: center;
-
     width: 11%;
 }
 
@@ -129,9 +129,7 @@ h1 {
     top: 150;
     left: 200;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
 }
 
 #meua_jugada2 {
@@ -171,8 +169,8 @@ h1 {
     border: 0px solid #ffffff;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
-    height: 170px;
-    width: 210px;
+    height: 120px;
+    width: 20%;
 }
 
 #Player2_jugada0 {
@@ -277,7 +275,7 @@ width: 100%;
     color: #ff00de;
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
     z-index: -1;
-}
+  }
 
 #scorePlayer2 {
     margin: 0px;
