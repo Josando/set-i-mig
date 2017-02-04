@@ -1,12 +1,18 @@
+
 body {
+
     background: #000000 url('../images/tapet_1.png') no-repeat;
     color: #ffffff;
+    background-size: cover;
 }
 
 #controls {
     position: absolute;
     top: 500;
+    width: 18%;
 }
+
+
 
 h1 {
     color: #ffffff;
@@ -15,6 +21,7 @@ h1 {
 .carta_meua {
     position: absolute;
     left: 10;
+    width: 100%;
 }
 
 .carta_meua_oculta {
@@ -41,6 +48,7 @@ h1 {
 .carta_banca {
     position: absolute;
     left: 10;
+    width: 100%;
 }
 
 
@@ -112,9 +120,8 @@ h1 {
     top: 150;
     left: 30;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+
+    width: 11%;
 }
 
 #meua_jugada1 {
@@ -152,9 +159,8 @@ h1 {
     top: 490;
     left: 540;
     text-align: center;
-    border: 4px dashed #ff0000;
-    height: 208px;
-    width: 150px;
+
+    width: 11%;
 }
 
 #info_jugada {
@@ -246,6 +252,14 @@ h1 {
 	border: 4px dashed #72ac6f;
 	height: 208px;
 	width: 150px;
+}
+
+
+/*////////*/
+
+#btnAgarraCarta{
+width: 100%;
+
 }
 
 

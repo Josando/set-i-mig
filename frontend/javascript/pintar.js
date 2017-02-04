@@ -89,7 +89,7 @@ function setimigEngine(partida_) {
             .attr('id', carta_id)
             .appendTo(capa_id);
 
-        $("<img>").attr('width', '150px')
+        $("<img>").attr('width', '100%')
             .attr('src', img_carta)
             .appendTo($d)
             .fadeOut('slow')
