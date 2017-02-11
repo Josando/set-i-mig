@@ -27,6 +27,7 @@ h1 {
 .carta_meua_oculta {
     position: absolute;
     left: 10;
+    width: 100%;
 }
 
 .carta_meua_oculta1 {
@@ -129,9 +130,7 @@ h1 {
     top: 150;
     left: 200;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+      width: 11%;
 }
 
 #meua_jugada2 {
