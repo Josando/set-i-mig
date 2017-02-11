@@ -121,7 +121,6 @@ h1 {
     top: 150;
     left: 30;
     text-align: center;
-
     width: 11%;
 }
 
@@ -138,9 +137,7 @@ h1 {
     top: 150;
     left: 370;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+  width: 11%;
 }
 
 #meua_jugada3 {
@@ -148,9 +145,7 @@ h1 {
     top: 150;
     left: 540;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+  width: 11%;
 }
 
 #banca_jugada {
@@ -167,11 +162,7 @@ h1 {
     top: 540;
     left: 270;
     text-align: center;
-    border: 0px solid #ffffff;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    height: 170px;
-    width: 210px;
+  width: 11%;
 }
 
 #Player2_jugada0 {
@@ -179,9 +170,7 @@ h1 {
     top: 150;
     left: 600;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
 }
 
 #Player2_jugada1 {
@@ -189,9 +178,7 @@ h1 {
     top: 150;
     left: 770;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+  width: 11%;
 }
 
 #Player2_jugada2 {
@@ -199,9 +186,7 @@ h1 {
     top: 150;
     left: 940;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+  width: 11%;
 }
 
 #Player2_jugada3 {
@@ -209,9 +194,7 @@ h1 {
     top: 150;
     left: 1110;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+  width: 11%;
 }
 
 #Player3_jugada0{
@@ -219,9 +202,7 @@ h1 {
 	top:150;
 	left:1140;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+	width: 11%;
 }
 
 #Player3_jugada1{
@@ -229,9 +210,7 @@ h1 {
 	top:150;
 	left:1310;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+	width: 11%;
 }
 
 #Player3_jugada2{
@@ -239,18 +218,14 @@ h1 {
 	top:150;
 	left:1480;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+width: 11%;
 }
 #Player3_jugada3{
 	position:absolute;
 	top:150;
 	left:1510;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+width: 11%;
 }
 
 
