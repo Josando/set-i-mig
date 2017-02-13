@@ -89,7 +89,7 @@ function setimigEngine(partida_) {
             .attr('id', carta_id)
             .appendTo(capa_id);
 
-        $("<img>").attr('width', '150px')
+        $("<img>").attr('width', '85%')
             .attr('src', img_carta)
             .appendTo($d)
             .fadeOut('slow')
@@ -173,6 +173,7 @@ function setimigEngine(partida_) {
             $d2.addClass("jugador_" + jugador_nom)
                 .attr('id', 'meua_jugada' + ultima_jugada)
                 .appendTo("#tapet");
+
         } else if (tipus_jugador === "PLAYER2") {
             var $d2 = $("<div>");
             $d2.addClass("jugador_" + jugador_nom)

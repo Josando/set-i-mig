@@ -191,6 +191,44 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
                 if (showPlayerProfile()) {
                     $template.hide();
                     main.singletonContext.getInstance().iniciar_joc(1);
+                    $("#linkestilo").attr("href", "styles/my_style0.css");
+                    $("#tancar_jugada").css("left", 543);
+                    ////////////////////////////////////////////////////////////
+                  /*  //Carta1
+                       //cartes
+                       document.getElementById('meua_jugada0').style.top = '180px';
+                       document.getElementById('meua_jugada0').style.left = '543px'; //30 - 513
+
+                       if(document.getElementById('meua_jugada1')){
+                           document.getElementById('meua_jugada1').style.top = '180px';
+                           document.getElementById('meua_jugada1').style.left = '713px'; //30
+                       }
+
+                       if(document.getElementById('meua_jugada2')){
+                           document.getElementById('meua_jugada2').style.top = '180px';
+                           document.getElementById('meua_jugada2').style.left = '883px'; //30
+                       }
+
+                       if(document.getElementById('meua_jugada3')){
+                           document.getElementById('meua_jugada3').style.top = '180px';
+                           document.getElementById('meua_jugada3').style.left = '1053px'; //30
+                       }
+
+                       document.getElementById('p1').style.top = '60px';
+                       document.getElementById('p1').style.left = '680px';
+
+                       //puntuacio
+                       document.getElementById('scorePlayer1').style.top = '55px';
+                       document.getElementById('scorePlayer1').style.left = '520px';
+
+                       //boto tancar jugada
+                       document.getElementById('tancar_jugada').style.top = '130px';
+                       document.getElementById('tancar_jugada').style.left = '530px';
+
+                       //nom
+                       document.getElementById('player1').style.top = '55px';
+                       document.getElementById('player1').style.left = '570px';
+                   *///
                 }
             });
 
