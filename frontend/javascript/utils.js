@@ -119,6 +119,7 @@ function showPlayerProfile() {
             }
             flag = true;
             $("#scorePlayer1").show();
+            $("#scorePlayer2").css("display", "block");
             $("#scorePlayer2").show();
         }
     } else {
@@ -192,7 +193,7 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
                     $template.hide();
                     main.singletonContext.getInstance().iniciar_joc(1);
                     $("#linkestilo").attr("href", "styles/my_style0.css");
-                    $("#tancar_jugada").css("left", 543);
+                    // $("#tancar_jugada").css("left", 543);
                     ////////////////////////////////////////////////////////////
                   /*  //Carta1
                        //cartes
@@ -258,6 +259,8 @@ function checkIfProfileHasBeenDefined(numberOfPlayers) {
                 if (showPlayerProfile()) {
                     $template.hide();
                     main.singletonContext.getInstance().iniciar_joc(2);
+                    $("#linkestilo").attr("href", "styles/my_style1.css");
+                    $("#tancar_jugada").css("left", 543);
                 }
             });
 

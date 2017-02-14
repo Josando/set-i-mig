@@ -145,7 +145,7 @@ function setimigEngine(partida_) {
                 $d.append(jugador_.nom + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).puntuacio + "<br>");
             }
         } else {
-          console.log(jugador_);
+            console.log(jugador_);
             var isbuit = $("#punts_banca").length == 0;
             $("#punts_banca").empty();
 
@@ -160,7 +160,7 @@ function setimigEngine(partida_) {
                 //  console.log("mgder->" + $d.html());
             } catch (e) {
                 if (!partida.getJugador(1).estaJugant())
-                    $d.html( jugador_.nom + " = " + jugador_.jugades[jugador_.jugada_actual].puntuacio);
+                    $d.html(jugador_.nom + " = " + jugador_.jugades[jugador_.jugada_actual].puntuacio);
                 //  console.log("mgder->" + $d.html());
             }
         }
@@ -210,7 +210,7 @@ function setimigEngine(partida_) {
                     return true;
                 },
                 "Continuar amb la mateixa": function() {
-                  //alert(numerodeljugadoractual);
+                    //alert(numerodeljugadoractual);
                     partida.getJugador(numerodeljugadoractual).afegir_carta_a_jugada_actual(carta_aux2);
                     $(this).dialog("close");
                     return false;
@@ -224,8 +224,8 @@ function setimigEngine(partida_) {
         var top = "490px";
         var left = "540px";
         if (tipus_jugador == "PLAYER1") {
-            top = "170px";
-            left = 50 + index_jugada * 170;
+            top = "20%";
+            left = 600 + index_jugada * 170;
         } else if (tipus_jugador == "PLAYER2") {
             top = "170px";
             left = left = 600 + index_jugada * 170;
@@ -233,8 +233,8 @@ function setimigEngine(partida_) {
             top = "170px";
             left = left = 1140 + index_jugada * 170;
         } else {
-            top = "490px";
-            left = "540px";
+            top = "61vh";
+            left = "23vw";
         }
         var $d = $("<div>")
             .css('position', 'absolute')
@@ -254,17 +254,19 @@ function setimigEngine(partida_) {
         var top = "490px";
         var left = "540px";
         if (tipus_jugador == "PLAYER1") {
-            top = "170px";
-            left = 50 + index_jugada * 170;
-        } else if (tipus_jugador == "PLAYER2") {
+            top = "20%";
+            left = 600 + index_jugada * 170;
+        }
+        else if (tipus_jugador == "PLAYER2") {
             top = "170px";
             left = 600 + index_jugada * 170;
-        } else if (tipus_jugador == "PLAYER3") {
+        } 
+        else if (tipus_jugador == "PLAYER3") {
             top = "170px";
             left = 1140 + index_jugada * 170;
         } else {
-            top = "490px";
-            left = "540px";
+            top = "61vh";
+            left = "23vw";
         }
         var $d = $("<div>")
             .css('position', 'absolute')
