@@ -1,5 +1,6 @@
 body {
     background: #000000 url('../images/tapet_1.png') no-repeat;
+    background-size: cover;
     color: #ffffff;
 }
 
