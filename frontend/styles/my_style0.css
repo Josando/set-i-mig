@@ -304,18 +304,14 @@ input.option {
 
 #p1 {
     position: absolute;
-    top: 60px;
-    left: 200px;
+    top: 4vh;
+    left: 27vw;
 }
 
 #p2 {
-    position: absolute;
-    top: 60px;
-    left: 800px;
+    display: none;
 }
 
 #p3 {
-    position: absolute;
-    top: 60px;
-    left: 1290px;
+  display: none;
 }
