@@ -1,12 +1,16 @@
 body {
+
     background: #000000 url('../images/tapet_1.png') no-repeat;
     background-size: cover;
     color: #ffffff;
+    background-size: cover;
+
 }
 
 #controls {
     position: absolute;
     top: 500;
+    width: 18%;
 }
 
 h1 {
@@ -16,6 +20,8 @@ h1 {
 .carta_meua {
     position: absolute;
     left: 10;
+    width: 100%;
+
 }
 
 .carta_meua_oculta {
@@ -42,6 +48,8 @@ h1 {
 .carta_banca {
     position: absolute;
     left: 10;
+    width: 100%;
+
 }
 
 
@@ -113,9 +121,8 @@ h1 {
     top: 150;
     left: 30;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
+
 }
 
 #meua_jugada1 {
@@ -123,9 +130,7 @@ h1 {
     top: 150;
     left: 200;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
 }
 
 #meua_jugada2 {
@@ -133,9 +138,7 @@ h1 {
     top: 150;
     left: 370;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
 }
 
 #meua_jugada3 {
@@ -143,9 +146,7 @@ h1 {
     top: 150;
     left: 540;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+      width: 11%;
 }
 
 #banca_jugada {
@@ -153,9 +154,7 @@ h1 {
     top: 490;
     left: 540;
     text-align: center;
-    border: 4px dashed #ff0000;
-    height: 208px;
-    width: 150px;
+    width: 11%;
 }
 
 #info_jugada {
@@ -175,9 +174,7 @@ h1 {
     top: 150;
     left: 600;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
 }
 
 #Player2_jugada1 {
@@ -185,9 +182,8 @@ h1 {
     top: 150;
     left: 770;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
+
 }
 
 #Player2_jugada2 {
@@ -195,9 +191,8 @@ h1 {
     top: 150;
     left: 940;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+    width: 11%;
+
 }
 
 #Player2_jugada3 {
@@ -205,9 +200,8 @@ h1 {
     top: 150;
     left: 1110;
     text-align: center;
-    border: 4px dashed #72ac6f;
-    height: 208px;
-    width: 150px;
+      width: 11%;
+
 }
 
 #Player3_jugada0{
@@ -215,9 +209,8 @@ h1 {
 	top:150;
 	left:1140;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+  width: 11%;
+
 }
 
 #Player3_jugada1{
@@ -225,9 +218,7 @@ h1 {
 	top:150;
 	left:1310;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+	  width: 11%;
 }
 
 #Player3_jugada2{
@@ -235,18 +226,22 @@ h1 {
 	top:150;
 	left:1480;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+  width: 11%;
 }
 #Player3_jugada3{
 	position:absolute;
 	top:150;
 	left:1510;
 	text-align:center;
-	border: 4px dashed #72ac6f;
-	height: 208px;
-	width: 150px;
+	  width: 11%;
+}
+
+
+/*////////*/
+
+#btnAgarraCarta{
+width: 100%;
+
 }
 
 
