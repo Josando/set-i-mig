@@ -31,6 +31,7 @@ function Context() {
 
     $("#tancar_jugada").click(function() {
         if (self.numerodejugadores == 1) {
+          //$("#tancar_jugada").css("left", 543);
             self.jugador[1].getJugadaActual().tancarJugada();
             if (self.jugador[1].estaJugant() == false) {
                 if (self.jugador[1].hiHaAlgunaJugadaValida()) {

@@ -6,8 +6,9 @@ body {
 
 #controls {
     position: absolute;
-    top: 500;
-    width: 18%;
+    bottom: 3vh;
+    right: 2vw;
+    width: 15%;
 }
 
 h1 {
@@ -64,19 +65,20 @@ h1 {
 
 #tancar_jugada {
     position: absolute;
-    top: 110;
-    left: 20;
+    top: 11px;
+    left: 35vw !important;
     text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
     text-align: center;
     text-decoration: none;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     color: #FFF;
     background: black;
-    padding: 6px 30px;
+    padding: 3px 0px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin: 10px 5px;
+    margin: 10px 4px;
+    width: 13%;
 }
 
 .azul {
@@ -112,86 +114,86 @@ h1 {
 
 #meua_jugada0 {
     position: absolute;
-    top: 150;
-    left: 30;
+    top: 10vh;
+    left: 7vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #meua_jugada1 {
     position: absolute;
-    top: 150;
-    left: 200;
+    top: 10vh;
+    left: 20vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #meua_jugada2 {
     position: absolute;
-    top: 150;
-    left: 370;
+    top: 10vh;
+    left: 33vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #meua_jugada3 {
     position: absolute;
-    top: 150;
-    left: 540;
+    top: 10vh;
+    left: 46vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #banca_jugada {
     position: absolute;
-    top: 490;
-    left: 540;
+    top: 39vh;
+    right: 20vw;
     text-align: center;
     width: 11%;
 }
 
 #info_jugada {
     position: absolute;
-    top: 540;
-    left: 270;
+    top: 2vh;
+    right: 2vw;
     text-align: center;
     border: 0px solid #ffffff;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
-    height: 170px;
-    width: 210px;
+    height: 23%;
+    width: 18%;
 }
 
 #Player2_jugada0 {
     position: absolute;
-    top: 150;
-    left: 600;
+    top: 59vh;
+    left: 7vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #Player2_jugada1 {
     position: absolute;
-    top: 150;
-    left: 770;
+    top: 59vh;
+    left: 20vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #Player2_jugada2 {
     position: absolute;
-    top: 150;
-    left: 940;
+    top: 59vh;
+    left: 33vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #Player2_jugada3 {
     position: absolute;
-    top: 150;
-    left: 1110;
+    top: 59vh;
+    left: 46vw;
     text-align: center;
-    width: 11%;
+    width: 9%;
 }
 
 #Player3_jugada0 {
@@ -239,8 +241,8 @@ h1 {
 #scorePlayer1 {
     margin: 0px;
     position: absolute;
-    top: 55;
-    left: 40;
+    top: 0;
+    left: 2vw;
     font-family: 'Russo One', sans-serif;
     font-size: 60px;
     color: #ff00de;
@@ -251,8 +253,8 @@ h1 {
 #scorePlayer2 {
     margin: 0px;
     position: absolute;
-    top: 55;
-    left: 600;
+    top: 50vh;
+    left: 2vw;
     font-family: 'Russo One', sans-serif;
     font-size: 60px;
     color: #0EC435;
@@ -284,8 +286,8 @@ h2#player1 {
     position: absolute;
     z-index: -1;
     color: #931A77;
-    top: 55;
-    left: 90;
+    top: 0;
+    left: 7vw;
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
 }
 
@@ -294,8 +296,8 @@ h2#player2 {
     font-family: 'Russo One', sans-serif;
     z-index: -1;
     color: #23582E;
-    top: 55;
-    left: 650;
+    top: 50vh;
+    left: 7vw;
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0EC435, 0 0 70px #0EC435, 0 0 80px #0EC435, 0 0 100px #0EC435, 0 0 150px #0EC435;
 }
 

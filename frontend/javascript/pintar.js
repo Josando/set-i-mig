@@ -89,8 +89,7 @@ function setimigEngine(partida_) {
             .attr('id', carta_id)
             .appendTo(capa_id);
 
-
-        $("<img>").attr('width', '100%')
+        $("<img>").attr('width', '85%')
             .attr('src', img_carta)
             .appendTo($d)
             .fadeOut('slow')
@@ -146,7 +145,7 @@ function setimigEngine(partida_) {
                 $d.append(jugador_.nom + " Jugada " + (i + 1) + " = " + jugador_.getJugada(i).puntuacio + "<br>");
             }
         } else {
-          console.log(jugador_);
+            console.log(jugador_);
             var isbuit = $("#punts_banca").length == 0;
             $("#punts_banca").empty();
 
@@ -161,7 +160,7 @@ function setimigEngine(partida_) {
                 //  console.log("mgder->" + $d.html());
             } catch (e) {
                 if (!partida.getJugador(1).estaJugant())
-                    $d.html( jugador_.nom + " = " + jugador_.jugades[jugador_.jugada_actual].puntuacio);
+                    $d.html(jugador_.nom + " = " + jugador_.jugades[jugador_.jugada_actual].puntuacio);
                 //  console.log("mgder->" + $d.html());
             }
         }
@@ -175,95 +174,24 @@ function setimigEngine(partida_) {
                 .attr('id', 'meua_jugada' + ultima_jugada)
                 .appendTo("#tapet");
 
-                //Carta1
-                        //cartes
-                        document.getElementById('meua_jugada0').style.top = '180px';
-                        document.getElementById('meua_jugada0').style.left = '543px'; //30 - 513
+        } else if (tipus_jugador === "PLAYER2") {
+            var $d2 = $("<div>");
+            $d2.addClass("jugador_" + jugador_nom)
+                .attr('id', 'Player2_jugada' + ultima_jugada)
+                .appendTo("#tapet");
 
-                        if(document.getElementById('meua_jugada1')){
-                            document.getElementById('meua_jugada1').style.top = '180px';
-                            document.getElementById('meua_jugada1').style.left = '713px'; //30
-                        }
-
-                        if(document.getElementById('meua_jugada2')){
-                            document.getElementById('meua_jugada2').style.top = '180px';
-                            document.getElementById('meua_jugada2').style.left = '883px'; //30
-                        }
-
-                        if(document.getElementById('meua_jugada3')){
-                            document.getElementById('meua_jugada3').style.top = '180px';
-                            document.getElementById('meua_jugada3').style.left = '1053px'; //30
-                        }
-
-                        document.getElementById('p1').style.top = '60px';
-                        document.getElementById('p1').style.left = '680px';
-
-                        //puntuacio
-                        document.getElementById('scorePlayer1').style.top = '55px';
-                        document.getElementById('scorePlayer1').style.left = '520px';
-
-                        //boto tancar jugada
-                        document.getElementById('tancar_jugada').style.top = '130px';
-                        document.getElementById('tancar_jugada').style.left = '530px';
-
-                        //nom
-                        document.getElementById('player1').style.top = '55px';
-                        document.getElementById('player1').style.left = '570px';
-                    //
-
-                        } else if (tipus_jugador === "PLAYER2") {
-                            var $d2 = $("<div>");
-                            $d2.addClass("jugador_" + jugador_nom)
-                                .attr('id', 'Player2_jugada' + ultima_jugada)
-                                .appendTo("#tapet");
-                /*
-                    //Carta1
-                        //cartes
-                        document.getElementById('meua_jugada0').style.top = '180px';
-                        document.getElementById('meua_jugada0').style.left = '243px';
-                        document.getElementById('p1').style.top = '60px';
-                        document.getElementById('p1').style.left = '380px';
-                        //puntuacio
-                        document.getElementById('scorePlayer1').style.top = '55px';
-                        document.getElementById('scorePlayer1').style.left = '220px';
-                        //boto tancar jugada
-                        document.getElementById('tancar_jugada').style.top = '130px';
-                        document.getElementById('tancar_jugada').style.left = '230px';
-                        //nom
-                        document.getElementById('player1').style.top = '55px';
-                        document.getElementById('player1').style.left = '270px';
-                    //
-                    //Carta2
-                        //cartes
-                        document.getElementById('Player2_jugada0').style.top = '180px';
-                        document.getElementById('Player2_jugada0').style.left = '843px';
-                        document.getElementById('p2').style.top = '60px';
-                        document.getElementById('p2').style.left = '980px';
-                        //puntuacio
-                        document.getElementById('scorePlayer2').style.top = '55px';
-                        document.getElementById('scorePlayer2').style.left = '820px';
-                        //boto tancar jugada
-                        document.getElementById('tancar_jugada').style.top = '130px';
-                        document.getElementById('tancar_jugada').style.left = '830px';
-                        //nom
-                        document.getElementById('player2').style.top = '55px';
-                        document.getElementById('player2').style.left = '870px';
-                    //
-                */
-
-                        } else if (tipus_jugador === "PLAYER3") {
-                            var $d2 = $("<div>");
-                            $d2.addClass("jugador_" + jugador_nom)
-                                .attr('id', 'Player3_jugada' + ultima_jugada)
-                                .appendTo("#tapet");
-                        } else {
-                            var $d2 = $("<div>");
-                            $d2.addClass("jugador_" + jugador_nom)
-                                .attr('id', 'banca_jugada')
-                                .appendTo("#tapet");
-                        }
-                    }
-
+        } else if (tipus_jugador === "PLAYER3") {
+            var $d2 = $("<div>");
+            $d2.addClass("jugador_" + jugador_nom)
+                .attr('id', 'Player3_jugada' + ultima_jugada)
+                .appendTo("#tapet");
+        } else {
+            var $d2 = $("<div>");
+            $d2.addClass("jugador_" + jugador_nom)
+                .attr('id', 'banca_jugada')
+                .appendTo("#tapet");
+        }
+    }
 
     this.obrimJugada = function(carta_aux2, numerodeljugadoractual) {
         console.log(numerodeljugadoractual);
@@ -282,7 +210,7 @@ function setimigEngine(partida_) {
                     return true;
                 },
                 "Continuar amb la mateixa": function() {
-                  //alert(numerodeljugadoractual);
+                    //alert(numerodeljugadoractual);
                     partida.getJugador(numerodeljugadoractual).afegir_carta_a_jugada_actual(carta_aux2);
                     $(this).dialog("close");
                     return false;
@@ -296,8 +224,8 @@ function setimigEngine(partida_) {
         var top = "490px";
         var left = "540px";
         if (tipus_jugador == "PLAYER1") {
-            top = "170px";
-            left = 50 + index_jugada * 170;
+            top = "20%";
+            left = 600 + index_jugada * 170;
         } else if (tipus_jugador == "PLAYER2") {
             top = "170px";
             left = left = 600 + index_jugada * 170;
@@ -305,8 +233,8 @@ function setimigEngine(partida_) {
             top = "170px";
             left = left = 1140 + index_jugada * 170;
         } else {
-            top = "490px";
-            left = "540px";
+            top = "61vh";
+            left = "23vw";
         }
         var $d = $("<div>")
             .css('position', 'absolute')
@@ -326,17 +254,19 @@ function setimigEngine(partida_) {
         var top = "490px";
         var left = "540px";
         if (tipus_jugador == "PLAYER1") {
-            top = "170px";
-            left = 50 + index_jugada * 170;
-        } else if (tipus_jugador == "PLAYER2") {
+            top = "20%";
+            left = 600 + index_jugada * 170;
+        }
+        else if (tipus_jugador == "PLAYER2") {
             top = "170px";
             left = 600 + index_jugada * 170;
-        } else if (tipus_jugador == "PLAYER3") {
+        }
+        else if (tipus_jugador == "PLAYER3") {
             top = "170px";
             left = 1140 + index_jugada * 170;
         } else {
-            top = "490px";
-            left = "540px";
+            top = "61vh";
+            left = "23vw";
         }
         var $d = $("<div>")
             .css('position', 'absolute')
